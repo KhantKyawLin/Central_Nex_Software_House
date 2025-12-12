@@ -2013,7 +2013,7 @@ footer {
         gap: 1rem;
     }
 
-   
+
 
     /* Fix testimonial layout on mobile */
     #testimonials .row {
@@ -2070,7 +2070,7 @@ footer {
         font-size: 1rem;
     }
 
-  
+
 
     .case-card {
         padding: 1.25rem;
@@ -2798,4 +2798,43 @@ button:disabled {
 
 .dark-theme .form-control.is-invalid {
     border-color: #dc3545;
+}
+
+/*  Modal Scrollbar Fix */
+.modal-body {
+    max-height: 60vh;
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+/* Custom scrollbar */
+.modal-body::-webkit-scrollbar {
+    width: 8px;
+}
+
+.modal-body::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.modal-body::-webkit-scrollbar-thumb {
+    background: var(--red-orange);
+    border-radius: 10px;
+}
+
+.modal-body::-webkit-scrollbar-thumb:hover {
+    background: #e65b32;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .modal-body {
+        max-height: 70vh;
+    }
+}
+
+@media (max-width: 576px) {
+    .modal-body {
+        max-height: 80vh;
+    }
 }
