@@ -93,10 +93,25 @@ document.addEventListener('DOMContentLoaded', function () {
             applyTheme();
             saveThemePreference();
             updateLogoDisplay();
-            updateGlobeColors();
+            closeNavbarOnMobile();
         });
     }
+    //  function to close navbar on mobile
+    function closeNavbarOnMobile() {
+        if (window.innerWidth <= 992) {
+            const navbarToggler = document.querySelector('.navbar-toggler');
+            const navbarCollapse = document.getElementById('navbarNav');
 
+            if (navbarToggler && navbarCollapse && navbarToggler.getAttribute('aria-expanded') === 'true') {
+                const bsCollapse = bootstrap.Collapse.getInstance(navbarCollapse);
+                if (bsCollapse) {
+                    bsCollapse.hide();
+                }
+                navbarToggler.setAttribute('aria-expanded', 'false');
+                navbarToggler.classList.add('collapsed');
+            }
+        }
+    }
     // Function to apply theme
     function applyTheme() {
         if (isDarkTheme) {
@@ -565,7 +580,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // ============================
     // Contact Form Submission with FormSubmit.co
     // ============================
-   
+
     const contactForm = document.getElementById('contactForm');
     if (contactForm) {
         contactForm.addEventListener('submit', async function (e) {
