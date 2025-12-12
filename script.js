@@ -64,9 +64,9 @@ document.addEventListener('DOMContentLoaded', function () {
         document.body.classList.remove('modal-open');
     });
 
-   
+
     // Theme Toggle Functionality
-    
+
     const themeToggle = document.getElementById('themeToggle');
     const themeIcon = document.getElementById('themeIcon');
     const body = document.body;
@@ -361,7 +361,7 @@ document.addEventListener('DOMContentLoaded', function () {
             // Show notification
             const tooltip = this.getAttribute('data-tooltip');
             if (tooltip) {
-                showNotification(`Clicked: ${tooltip}`, 'info');
+                showNotification(`We service ${tooltip}`, 'info');
             }
 
             setTimeout(() => {
@@ -501,7 +501,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Handle window resize for cases
     window.addEventListener('resize', updateCaseDisplay);
 
-  
+
     // ============================
     // Simple Testimonial Slider
     // ============================

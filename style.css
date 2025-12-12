@@ -1,19 +1,16 @@
+/* =============================================
+   GLOBAL & THEME SETTINGS
+   ============================================= */
+
 /* --- Color Variables --- */
 :root {
-    /* ---------------------------------
-       DARK THEME (Default)
-       --------------------------------- */
+    /* DARK THEME (Default) */
     --dark-blue: #25263a;
-    /* Main brand dark */
     --dark-black: #0c0c13;
-    /* Deep background */
     --ambient-dark: #1a1b2b;
-    /* Soft dark gradient base */
 
     --red-orange: #c24822;
-    /* Brand accent */
     --light-gray: #c5c6d6;
-    /* Light text */
 
     --cube-size: 180px;
     --animation-duration: 25s;
@@ -31,26 +28,17 @@
     --shadow-color: rgba(0, 0, 0, 0.45);
 }
 
-/* ---------------------------------
-   LIGHT THEME OVERRIDES
-   --------------------------------- */
+/* LIGHT THEME OVERRIDES */
 .light-theme {
     --bg-primary: #f5f7fa;
-    /* Soft neutral white-blue */
     --bg-secondary: #ffffff;
-    /* Clean white */
     --bg-ambient: #eef1f5;
-    /* Slightly cool tone */
 
     --text-primary: #444b55;
-    /* Dark gray neutral */
     --text-white: #1b1d21;
-    /* Dark text for titles */
     --text-highlight: #c24822;
-    /* Keep brand color */
 
     --light-gray: #6c757d;
-    /* Muted gray */
 
     --border-color: rgba(0, 0, 0, 0.12);
     --shadow-color: rgba(0, 0, 0, 0.12);
@@ -92,7 +80,7 @@ section {
     max-width: 1200px;
 }
 
-/* Fix for modal scrollbar issue - COMPLETE FIX */
+/* Fix for modal scrollbar issue */
 body.modal-open {
     overflow: hidden !important;
     padding-right: 0 !important;
@@ -107,7 +95,10 @@ body.modal-open {
     transition: padding-right 0s !important;
 }
 
-/* --- Navbar --- */
+/* =============================================
+   NAVBAR SECTION
+   ============================================= */
+
 #mainNavbar {
     background-color: var(--bg-secondary);
     backdrop-filter: blur(10px);
@@ -115,7 +106,6 @@ body.modal-open {
     padding: 1rem 0;
     transition: all 0.3s ease;
     z-index: 1050;
-    /* Higher than modal backdrop */
 }
 
 #mainNavbar.scrolled {
@@ -244,25 +234,74 @@ body.modal-open {
     color: var(--text-primary) !important;
     font-weight: 500;
     padding: 0.5rem 1rem;
-    transition: all 0.3s ease;
+    transition: all 0.3s ease, transform 0.3s ease;
     position: relative;
 }
 
 .navbar-nav .nav-link:hover,
 .navbar-nav .nav-link.active {
     color: var(--red-orange) !important;
+
+}
+
+.nav-link.active {
+
+    /* Nav Links */
+    .navbar-nav .nav-link {
+        color: var(--text-primary) !important;
+        font-weight: 500;
+        padding: 0.5rem 1rem;
+        transition: all 0.3s ease, transform 0.3s ease;
+        position: relative;
+    }
+
+    .navbar-nav .nav-link:hover,
+    .navbar-nav .nav-link.active {
+        color: var(--red-orange) !important;
+
+    }
+
+    .nav-link.active {
+        font-weight: 600;
+        color: var(--red-orange) !important;
+    }
+
+    .nav-link {
+
+        transition: color 0.3s ease, transform 0.3s ease;
+    }
+
+
+    .nav-link:hover {
+        color: var(--red-orange) !important;
+        transform: translateY(-3px);
+        font-weight: 600;
+
+    }
+
+    .navbar-nav .nav-link.active::after {
+
+        transition: all 0.3s ease;
+    }
+
+    color: var(--red-orange) !important;
+}
+
+.nav-link {
+
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+
+.nav-link:hover {
+    color: var(--red-orange) !important;
+    transform: translateY(-3px);
+
 }
 
 .navbar-nav .nav-link.active::after {
-    content: '';
-    position: absolute;
-    bottom: -5px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 5px;
-    height: 5px;
-    background-color: var(--red-orange);
-    border-radius: 50%;
+
+    transition: all 0.3s ease;
 }
 
 /* Theme Toggle Button */
@@ -292,7 +331,10 @@ body.modal-open {
     border: none;
 }
 
-/* --- Hero Section --- */
+/* =============================================
+   HERO SECTION
+   ============================================= */
+
 #hero-section {
     background: var(--bg-secondary);
     min-height: 100vh;
@@ -319,6 +361,10 @@ body.modal-open {
 
 .text-light-gray {
     color: var(--text-primary) !important;
+}
+
+.text-partnership {
+    color: var(--dark-blue) !important;
 }
 
 .text-highlight {
@@ -370,7 +416,10 @@ body.modal-open {
     transform: translateY(-2px);
 }
 
-/* --- 3D Cube with Segments --- */
+/* =============================================
+   3D CUBE WITH SEGMENTS
+   ============================================= */
+
 .cube-container {
     position: relative;
     display: flex;
@@ -430,7 +479,7 @@ body.modal-open {
         0 0 20px rgba(0, 0, 0, 0.5);
 }
 
-/* Specific face colors - alternating between red-orange and dark-blue */
+/* Specific face colors */
 .cube-face.front {
     background: linear-gradient(135deg, var(--red-orange), #e65b32, var(--red-orange));
     transform: rotateY(0deg) translateZ(calc(var(--cube-size) / 2));
@@ -485,7 +534,7 @@ body.modal-open {
         0 0 20px rgba(194, 72, 34, 0.3);
 }
 
-/* 4 SEGMENTS PER FACE - TWO STRAIGHT MID LINES (vertical and horizontal) */
+/* 4 SEGMENTS PER FACE */
 .cube-face::before {
     content: '';
     position: absolute;
@@ -525,7 +574,6 @@ body.modal-open {
 .cube-face.right::after,
 .cube-face.top::before,
 .cube-face.top::after {
-    /* White lines on red-orange faces */
     background: linear-gradient(90deg,
             transparent calc(50% - 1px),
             rgba(255, 255, 255, 0.6) calc(50% - 0.5px),
@@ -549,7 +597,6 @@ body.modal-open {
 .cube-face.left::after,
 .cube-face.bottom::before,
 .cube-face.bottom::after {
-    /* Red-orange lines on dark-blue faces */
     background: linear-gradient(90deg,
             transparent calc(50% - 1px),
             rgba(194, 72, 34, 0.7) calc(50% - 0.5px),
@@ -567,7 +614,10 @@ body.modal-open {
             transparent calc(50% + 1px));
 }
 
-/* Floating Elements with Tooltips */
+/* =============================================
+   FLOATING ELEMENTS WITH TOOLTIPS
+   ============================================= */
+
 .floating-element {
     position: absolute;
     color: white;
@@ -679,7 +729,10 @@ body.modal-open {
     transform: translateX(-50%) translateY(-5px);
 }
 
-/* --- Partnerships --- */
+/* =============================================
+   PARTNERSHIPS SECTION
+   ============================================= */
+
 #partnerships {
     background-color: var(--bg-secondary);
 }
@@ -716,7 +769,7 @@ body.modal-open {
 
 .partnership-item {
     border-radius: 12px;
-    background-color: var(--bg-ambient);
+    background-color: rgba(224, 223, 223, 0.77);
     box-shadow: 0 5px 15px var(--shadow-color);
     transition: all 0.3s ease;
     display: flex;
@@ -747,7 +800,7 @@ body.modal-open {
 .partnership-item:hover .partnership-logo {
     filter: grayscale(0%);
     opacity: 1;
-    transform: scale(1.05);
+    transform: scale(1.5);
 }
 
 .logo-caption {
@@ -757,7 +810,10 @@ body.modal-open {
     text-align: center;
 }
 
-/* --- About Us --- */
+/* =============================================
+   ABOUT US SECTION
+   ============================================= */
+
 .about-container {
     background-color: var(--bg-ambient);
     border-radius: 20px;
@@ -828,7 +884,10 @@ body.modal-open {
     box-shadow: 0 0 20px var(--shadow-color);
 }
 
-/* --- Modals --- */
+/* =============================================
+   MODALS
+   ============================================= */
+
 .custom-modal {
     background-color: var(--bg-ambient);
     color: var(--text-primary);
@@ -867,7 +926,10 @@ body.modal-open {
     opacity: 1;
 }
 
-/* --- What We Do --- */
+/* =============================================
+   WHAT WE DO SECTION
+   ============================================= */
+
 #what-we-do {
     background-color: var(--bg-secondary);
     position: relative;
@@ -1019,21 +1081,7 @@ body.modal-open {
 }
 
 /* Tech Cards */
-.tech-card {
-    background: linear-gradient(145deg, var(--bg-ambient), var(--bg-secondary));
-    border-radius: 20px;
-    padding: 2rem;
-    border: 1px solid var(--border-color);
-    transition: all 0.3s ease;
-    text-align: center;
-    height: 100%;
-}
 
-.tech-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 30px var(--shadow-color);
-    border-color: var(--red-orange);
-}
 
 .tech-icon {
     font-size: 3rem;
@@ -1073,16 +1121,19 @@ body.modal-open {
     transition: all 0.3s ease;
 }
 
-.tech-card:hover .tech-badge {
+.service-card:hover .tech-badge {
     background: rgba(194, 72, 34, 0.2);
     border-color: var(--red-orange);
 }
 
-/* --- Cases --- */
+/* =============================================
+   CASES SECTION
+   ============================================= */
+
 .card-stack-container {
     position: relative;
     height: auto;
-    min-height: 500px;
+    min-height: 400px;
     margin: 0 auto;
     max-width: 900px;
     perspective: 1200px;
@@ -1251,8 +1302,10 @@ body.modal-open {
     text-align: center;
 }
 
-/* --- Testimonials with Stacked Cards (Like Cases Section) --- */
-/* --- Testimonials with Simple Slider --- */
+/* =============================================
+   TESTIMONIALS SECTION
+   ============================================= */
+
 #testimonials {
     background-color: var(--bg-secondary);
     position: relative;
@@ -1300,7 +1353,6 @@ body.modal-open {
     display: flex;
     flex-direction: column;
     min-height: 320px;
-    /* Minimum height for consistency */
 }
 
 .testimonial-card::before {
@@ -1327,11 +1379,8 @@ body.modal-open {
     margin-bottom: 1.5rem;
     flex-grow: 1;
     overflow-y: auto;
-    /* Allow scrolling for very long text */
     max-height: 200px;
-    /* Limit height for consistency */
     padding-right: 5px;
-    /* Space for scrollbar */
 }
 
 .testimonial-text::-webkit-scrollbar {
@@ -1356,7 +1405,6 @@ body.modal-open {
     border-top: 1px solid var(--border-color);
     margin-top: auto;
     flex-shrink: 0;
-    /* Prevent shrinking */
 }
 
 .rating {
@@ -1368,7 +1416,7 @@ body.modal-open {
     font-size: 1rem;
 }
 
-/* Navigation */
+/* Testimonial Navigation */
 .stack-navigation {
     display: flex;
     align-items: center;
@@ -1390,7 +1438,6 @@ body.modal-open {
     transition: all 0.3s ease;
     backdrop-filter: blur(10px);
     flex-shrink: 0;
-    /* Prevent button shrinking */
 }
 
 .stack-nav-btn:hover:not(:disabled) {
@@ -1414,83 +1461,11 @@ body.modal-open {
     text-align: center;
 }
 
-/* Black Rotating Sphere */
-.globe-wrapper {
-    position: relative;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 1rem 0;
-    /* Add padding for mobile */
-}
-
-.globe-container {
-    position: relative;
-    text-align: center;
-    width: 100%;
-    overflow: hidden;
-    /* Prevent overflow */
-}
-
-.scene {
-    width: 100%;
-    min-height: 260px;
-    /* Minimum height for sphere area */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    perspective: 800px;
-    margin: 0 auto;
-}
-
-/* Your Black Rotating Sphere */
-.sphere-wrapper {
-    width: 260px;
-    height: 260px;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto;
-    /* Center the sphere */
-}
-
-.black-sphere {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    background: radial-gradient(circle at 30% 30%,
-            var(--light-gray) 0%,
-            var(--red-orange) 6%,
-            var(--dark-blue) 28%,
-            var(--ambient-dark) 50%,
-            var(--dark-black) 78%,
-            #000 100%);
-    animation: rotate 12s linear infinite;
-    box-shadow:
-        inset -20px -30px 40px rgba(0, 0, 0, 0.6),
-        inset 10px 15px 25px rgba(255, 255, 255, 0.05),
-        0px 0px 90px rgba(0, 0, 0, 0.6);
-}
-
-@keyframes rotate {
-    0% {
-        transform: rotate(0deg);
-    }
-
-    100% {
-        transform: rotate(360deg);
-    }
-}
-
 /* Stats */
 .stat-item {
     text-align: center;
     flex: 1;
-    /* Equal width for all stats */
     min-width: 80px;
-    /* Minimum width for stats */
 }
 
 .stat-number {
@@ -1504,351 +1479,10 @@ body.modal-open {
     margin-top: 0.25rem;
 }
 
-/* Mobile Responsive Design */
-@media (max-width: 1199px) {
-    .scene {
-        min-height: 240px;
-    }
+/* =============================================
+   CONTACT SECTION
+   ============================================= */
 
-    .sphere-wrapper {
-        width: 240px;
-        height: 240px;
-    }
-
-    .testimonial-text {
-        max-height: 180px;
-        /* Adjust for tablet */
-    }
-}
-
-@media (max-width: 992px) {
-    .testimonial-slides-container {
-        min-height: 380px;
-    }
-
-    .testimonial-card {
-        padding: 1.75rem;
-        min-height: 300px;
-    }
-
-    .scene {
-        min-height: 220px;
-    }
-
-    .sphere-wrapper {
-        width: 220px;
-        height: 220px;
-    }
-
-    .testimonial-text {
-        max-height: 160px;
-    }
-}
-
-@media (max-width: 768px) {
-    .testimonial-slides-container {
-        min-height: auto;
-        height: auto;
-        margin-bottom: 2rem;
-        /* Space for buttons */
-    }
-
-    .testimonial-slide {
-        position: relative;
-        opacity: 0;
-        visibility: hidden;
-        height: 0;
-        overflow: hidden;
-        margin-bottom: 0;
-    }
-
-    .testimonial-slide.active {
-        opacity: 1;
-        visibility: visible;
-        height: auto;
-        margin-bottom: 0;
-    }
-
-    .testimonial-card {
-        padding: 1.5rem;
-        margin-bottom: 2rem;
-        /* Space below card */
-        height: auto;
-        min-height: 280px;
-        max-height: 400px;
-        /* Limit max height */
-    }
-
-    .testimonial-author {
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        flex-wrap: wrap;
-        gap: 0.75rem;
-    }
-
-    .author-info {
-        flex: 1;
-        min-width: 200px;
-    }
-
-    .rating {
-        justify-content: flex-start;
-        width: auto;
-    }
-
-    .scene {
-        min-height: 200px;
-        margin-bottom: 1rem;
-    }
-
-    .sphere-wrapper {
-        width: 200px;
-        height: 200px;
-    }
-
-    .black-sphere {
-        box-shadow:
-            inset -15px -20px 30px rgba(0, 0, 0, 0.6),
-            inset 8px 10px 20px rgba(255, 255, 255, 0.05),
-            0px 0px 60px rgba(0, 0, 0, 0.6);
-    }
-
-    .stack-navigation {
-        margin-top: 1.5rem;
-        margin-bottom: 1rem;
-        position: sticky;
-        bottom: 0;
-        background: var(--bg-secondary);
-        padding: 1rem 0;
-    }
-
-    .testimonial-text {
-        max-height: 150px;
-        /* Smaller on mobile */
-    }
-
-    /* Make stats responsive on tablet */
-    .globe-info .d-flex {
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 1rem;
-    }
-
-    .stat-item {
-        min-width: 70px;
-    }
-}
-
-@media (max-width: 576px) {
-    #testimonials .container-xl {
-        padding-left: 15px;
-        padding-right: 15px;
-    }
-
-    .testimonial-card {
-        padding: 1.25rem;
-        border-radius: 15px;
-        min-height: 260px;
-        max-height: 380px;
-        margin-bottom: 2rem;
-        /* Ensure space for buttons */
-    }
-
-    .testimonial-text {
-        font-size: 0.95rem;
-        line-height: 1.6;
-        max-height: 140px;
-        margin-bottom: 1rem;
-    }
-
-    .testimonial-author {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.75rem;
-        padding-top: 1rem;
-    }
-
-    .author-info h4 {
-        font-size: 1.1rem;
-        margin-bottom: 0.25rem;
-    }
-
-    .author-info p {
-        font-size: 0.85rem;
-        margin-bottom: 0;
-    }
-
-    .rating {
-        width: 100%;
-        justify-content: flex-start;
-    }
-
-    .scene {
-        min-height: 180px;
-        margin-bottom: 1.5rem;
-    }
-
-    .sphere-wrapper {
-        width: 180px;
-        height: 180px;
-    }
-
-    .black-sphere {
-        box-shadow:
-            inset -10px -15px 25px rgba(0, 0, 0, 0.6),
-            inset 5px 8px 15px rgba(255, 255, 255, 0.05),
-            0px 0px 40px rgba(0, 0, 0, 0.6);
-    }
-
-    .stack-navigation {
-        flex-direction: row;
-        gap: 0.5rem;
-        margin-top: 1rem;
-        padding: 1rem 0;
-        flex-wrap: nowrap;
-        /* Keep buttons in one line */
-    }
-
-    .testimonial-counter {
-        margin: 0 0.5rem;
-        order: 0;
-        font-size: 1rem;
-        min-width: 60px;
-    }
-
-    .stack-nav-btn {
-        width: auto;
-        max-width: none;
-        padding: 0.4rem 1rem;
-        font-size: 0.85rem;
-        flex: 1;
-        /* Equal width buttons */
-    }
-
-    .stack-nav-btn:nth-child(1) {
-        order: -1;
-        /* Previous button first */
-    }
-
-    .stack-nav-btn:nth-child(3) {
-        order: 1;
-        /* Next button last */
-    }
-
-    /* Fix stats layout for mobile */
-    .globe-info .d-flex {
-        gap: 0.75rem;
-    }
-
-    .stat-item {
-        min-width: 60px;
-    }
-
-    .stat-number {
-        font-size: 1.2rem;
-    }
-
-    .stat-label {
-        font-size: 0.7rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .testimonial-card {
-        padding: 1rem;
-        min-height: 240px;
-        max-height: 360px;
-        margin-bottom: 1.5rem;
-    }
-
-    .quote-icon {
-        font-size: 1.5rem;
-        margin-bottom: 0.75rem;
-    }
-
-    .testimonial-text {
-        font-size: 0.9rem;
-        line-height: 1.5;
-        max-height: 130px;
-    }
-
-    .scene {
-        min-height: 160px;
-    }
-
-    .sphere-wrapper {
-        width: 160px;
-        height: 160px;
-    }
-
-    .stat-number {
-        font-size: 1.1rem;
-    }
-
-    .stat-label {
-        font-size: 0.65rem;
-    }
-
-    .stack-navigation {
-        gap: 0.25rem;
-    }
-
-    .stack-nav-btn {
-        padding: 0.35rem 0.75rem;
-        font-size: 0.8rem;
-    }
-
-    .testimonial-counter {
-        font-size: 0.9rem;
-        min-width: 50px;
-    }
-}
-
-@media (max-width: 360px) {
-    .testimonial-card {
-        min-height: 220px;
-        max-height: 340px;
-    }
-
-    .testimonial-text {
-        font-size: 0.85rem;
-        max-height: 120px;
-    }
-
-    .scene {
-        min-height: 140px;
-    }
-
-    .sphere-wrapper {
-        width: 140px;
-        height: 140px;
-    }
-
-    .black-sphere {
-        box-shadow:
-            inset -8px -12px 20px rgba(0, 0, 0, 0.6),
-            inset 4px 6px 12px rgba(255, 255, 255, 0.05),
-            0px 0px 30px rgba(0, 0, 0, 0.6);
-    }
-
-    .stack-navigation {
-        flex-wrap: wrap;
-    }
-
-    .stack-nav-btn {
-        flex: 0 0 calc(50% - 0.5rem);
-        text-align: center;
-    }
-
-    .testimonial-counter {
-        flex: 0 0 100%;
-        margin: 0.5rem 0;
-        order: 1;
-    }
-}
-
-/* --- Contact --- */
 .contact-card {
     background: linear-gradient(145deg, var(--bg-ambient), var(--bg-secondary));
     border-radius: 20px;
@@ -1887,7 +1521,10 @@ body.modal-open {
     margin-bottom: 0.5rem;
 }
 
-/* --- Footer --- */
+/* =============================================
+   FOOTER SECTION
+   ============================================= */
+
 footer {
     background-color: var(--bg-secondary);
     border-top: 1px solid var(--border-color);
@@ -1901,6 +1538,15 @@ footer {
 .social-links {
     display: flex;
     gap: 1rem;
+    justify-content: center;
+    /* Center on mobile */
+}
+
+@media (min-width: 992px) {
+    .social-links {
+        justify-content: flex-end;
+        /* Align right on desktop */
+    }
 }
 
 .social-link {
@@ -1914,15 +1560,38 @@ footer {
     align-items: center;
     justify-content: center;
     background: var(--bg-ambient);
+    text-decoration: none !important;
+    border: none !important;
+    outline: none !important;
 }
 
-.social-link:hover {
+.social-link:hover,
+.social-link:focus {
     color: var(--red-orange);
     background: rgba(194, 72, 34, 0.1);
     transform: translateY(-3px);
+    text-decoration: none !important;
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
 }
 
-/* --- Responsive Design --- */
+.social-link i {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.social-link:active,
+.social-link:visited {
+    text-decoration: none;
+    border: none;
+}
+
+/* =============================================
+   RESPONSIVE DESIGN
+   ============================================= */
+
 @media (max-width: 1200px) {
     .container-xl {
         padding: 0 2rem;
@@ -1945,6 +1614,7 @@ footer {
         border-radius: 20px;
     }
 
+
     .case-card {
         padding: 2rem;
     }
@@ -1958,39 +1628,29 @@ footer {
         flex: 0 0 35%;
     }
 
-    .scene {
-        width: 180px;
-        height: 180px;
-    }
-
-    .cube-face::before,
-    .cube-face::after {
-        background-size: calc(var(--cube-size) / 2) calc(var(--cube-size) / 2);
-    }
-
     .cube-wrapper-section {
         margin-top: 2rem;
         margin-bottom: 3rem;
     }
 
-    .globe-core {
-        width: 50px;
-        height: 50px;
+    .social-links {
+        justify-content: center;
+        margin-top: 1rem;
     }
 
-    .globe-ring:nth-child(1) {
-        width: 160px;
-        height: 160px;
+    .footer-logo {
+        justify-content: center;
+        text-align: center;
     }
 
-    .globe-ring:nth-child(2) {
-        width: 120px;
-        height: 120px;
+    .footer-logo .navbar-brand {
+        flex-direction: column;
+        text-align: center;
     }
 
-    .globe-ring:nth-child(3) {
-        width: 80px;
-        height: 80px;
+    .footer-logo .logo-image-container {
+        margin-right: 0 !important;
+        margin-bottom: 0.5rem;
     }
 }
 
@@ -2040,23 +1700,13 @@ footer {
     }
 
     .partnership-slider-container {
-        height: 120px;
+        max-height: 150px;
         margin-left: 0;
     }
 
     .partnership-item {
-        min-width: 120px;
+        min-width: 140px;
         margin: 0 15px;
-    }
-
-    .scene {
-        width: 160px;
-        height: 160px;
-    }
-
-    .cube-face::before,
-    .cube-face::after {
-        background-size: calc(var(--cube-size) / 1.5) calc(var(--cube-size) / 1.5);
     }
 
     /* Fix testimonial layout on mobile */
@@ -2077,24 +1727,14 @@ footer {
         margin-bottom: 4rem;
     }
 
-    .globe-core {
-        width: 40px;
-        height: 40px;
+    .social-links {
+        gap: 0.75rem;
     }
 
-    .globe-ring:nth-child(1) {
-        width: 140px;
-        height: 140px;
-    }
-
-    .globe-ring:nth-child(2) {
-        width: 100px;
-        height: 100px;
-    }
-
-    .globe-ring:nth-child(3) {
-        width: 60px;
-        height: 60px;
+    .social-link {
+        width: 36px;
+        height: 36px;
+        font-size: 1.1rem;
     }
 }
 
@@ -2125,11 +1765,11 @@ footer {
     }
 
     .partnership-slider-container {
-        height: 110px;
+        height: 120px;
     }
 
     .partnership-item {
-        min-width: 100px;
+        min-width: 130px;
         margin: 0 10px;
         padding: 10px;
     }
@@ -2160,24 +1800,13 @@ footer {
         font-size: 0.9rem;
     }
 
-    .scene {
-        width: 140px;
-        height: 140px;
-    }
-
-    .service-card,
-    .tech-card {
+    .service-card {
         padding: 1.5rem;
     }
 
     .custom-tab-link {
         padding: 10px 20px !important;
         font-size: 0.9rem;
-    }
-
-    .cube-face::before,
-    .cube-face::after {
-        background-size: var(--cube-size) var(--cube-size);
     }
 
     .floating-element {
@@ -2194,26 +1823,6 @@ footer {
     .cube-wrapper-section {
         margin-top: 4rem;
         margin-bottom: 5rem;
-    }
-
-    .globe-core {
-        width: 30px;
-        height: 30px;
-    }
-
-    .globe-ring:nth-child(1) {
-        width: 120px;
-        height: 120px;
-    }
-
-    .globe-ring:nth-child(2) {
-        width: 80px;
-        height: 80px;
-    }
-
-    .globe-ring:nth-child(3) {
-        width: 50px;
-        height: 50px;
     }
 }
 
@@ -2236,43 +1845,16 @@ footer {
         margin-bottom: 0.5rem;
     }
 
-    .cube-face::before,
-    .cube-face::after {
-        background-size: calc(var(--cube-size) * 1.2) calc(var(--cube-size) * 1.2);
-    }
-
-    .scene {
-        width: 120px;
-        height: 120px;
-    }
-
     .cube-wrapper-section {
         margin-top: 5rem;
         margin-bottom: 6rem;
     }
-
-    .globe-core {
-        width: 25px;
-        height: 25px;
-    }
-
-    .globe-ring:nth-child(1) {
-        width: 100px;
-        height: 100px;
-    }
-
-    .globe-ring:nth-child(2) {
-        width: 70px;
-        height: 70px;
-    }
-
-    .globe-ring:nth-child(3) {
-        width: 40px;
-        height: 40px;
-    }
 }
 
-/* Light Theme Specific Adjustments */
+/* =============================================
+   LIGHT THEME SPECIFIC ADJUSTMENTS
+   ============================================= */
+
 .light-theme .cube-face {
     box-shadow:
         inset 0 0 20px rgba(0, 0, 0, 0.3),
@@ -2280,7 +1862,6 @@ footer {
 }
 
 .light-theme .service-card,
-.light-theme .tech-card,
 .light-theme .case-card,
 .light-theme .testimonial-card,
 .light-theme .contact-card {
@@ -2311,115 +1892,27 @@ footer {
 .light-theme .modal-body .text-white,
 .light-theme .modal-body h3,
 .light-theme .modal-body h4 {
-    color: var(--text-white) !important;
-}
-
-/* Modal specific fixes for light theme */
-.light-theme .modal-header .btn-close {
-    filter: invert(0) brightness(0.2);
-}
-
-/* Add these fixes to your existing style.css file */
-
-/* Fix for theme colors - Text color adjustments */
-.light-theme .text-white,
-.light-theme h1,
-.light-theme h2,
-.light-theme h3,
-.light-theme h4,
-.light-theme h5,
-.light-theme h6,
-.light-theme .card-title,
-.light-theme .tech-title,
-.light-theme .case-details h3,
-.light-theme .testimonial-author h4,
-.light-theme .author-info h4,
-.light-theme .modal-body h3,
-.light-theme .modal-body h4,
-.light-theme .brand-text {
     color: #1b1d21 !important;
-    /* Dark gray instead of pure black */
 }
 
 .light-theme .text-highlight {
     color: var(--red-orange) !important;
 }
 
-/* Modal fixes for light theme */
+/* Modal close button fixes */
+.btn-close-custom {
+    filter: invert(0) brightness(2.5) !important;
+    opacity: 1 !important;
+    width: 30px !important;
+    height: 30px !important;
+    background-size: 1.2em !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+}
+
 .light-theme .btn-close-custom {
-    filter: invert(0) grayscale(100%) brightness(20%) !important;
-    background: transparent url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%231b1d21'%3e%3cpath d='M.293.293a1 1 0 011.414 0L8 6.586 14.293.293a1 1 0 111.414 1.414L9.414 8l6.293 6.293a1 1 0 01-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 01-1.414-1.414L6.586 8 .293 1.707a1 1 0 010-1.414z'/%3e%3c/svg%3e") center/1em auto no-repeat !important;
-}
-
-/* Testimonials slider fixed positioning */
-.testimonial-track-wrapper {
-    overflow: hidden;
-    position: relative;
-    width: 100%;
-    min-height: 320px;
-    /* Fixed height to prevent shifting */
-}
-
-.testimonial-track {
-    display: flex;
-    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    width: 100%;
-    height: 100%;
-    position: relative;
-    align-items: stretch;
-    /* Ensure all slides have same height */
-}
-
-/* Ensure all testimonial cards are the same size */
-.testimonial-card>* {
-    flex: 1 0 auto;
-}
-
-.testimonial-controls {
-    margin-top: 2rem;
-    width: 100%;
-}
-
-/* Cube margin for small screens */
-@media (max-width: 768px) {
-    .cube-wrapper-section {
-        margin-bottom: 6rem !important;
-        margin-top: 2rem !important;
-    }
-
-    /* Adjust cube size for better mobile view */
-    :root {
-        --cube-size: 120px;
-    }
-}
-
-@media (max-width: 576px) {
-    .cube-wrapper-section {
-        margin-bottom: 8rem !important;
-        margin-top: 3rem !important;
-    }
-
-    :root {
-        --cube-size: 100px;
-    }
-}
-
-/* Partnership slider improvement */
-.partnership-track {
-    display: flex;
-    align-items: center;
-    padding: 20px 0;
-}
-
-/* Fix for cube hover effects */
-.cube-face.hovered::before,
-.cube-face.hovered::after {
-    opacity: 0.8 !important;
-}
-
-/* Modal backdrop fix */
-.modal-backdrop {
-    z-index: 1040 !important;
+    filter: invert(1) brightness(0.2) !important;
+    opacity: 1 !important;
 }
 
 /* Fix for form controls in light theme */
@@ -2457,8 +1950,7 @@ footer {
 }
 
 /* Service cards in light theme */
-.light-theme .service-card,
-.light-theme .tech-card {
+.light-theme .service-card {
     background: linear-gradient(145deg, #ffffff, #f8f9fa);
     border-color: rgba(0, 0, 0, 0.12);
 }
@@ -2564,27 +2056,143 @@ footer {
     border-top: 1px solid rgba(0, 0, 0, 0.12);
 }
 
-/* Modal close button fixes */
-.btn-close-custom {
-    filter: invert(0) brightness(2.5) !important;
-    opacity: 1 !important;
-    width: 30px !important;
-    height: 30px !important;
-    background-size: 1.2em !important;
-    background-repeat: no-repeat !important;
-    background-position: center !important;
+/* =============================================
+   ADDITIONAL FIXES
+   ============================================= */
+
+/* Testimonials slider fixed positioning */
+.testimonial-track-wrapper {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    min-height: 320px;
 }
 
-.light-theme .btn-close-custom {
-    filter: invert(1) brightness(0.2) !important;
-    opacity: 1 !important;
+.testimonial-track {
+    display: flex;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    width: 100%;
+    height: 100%;
+    position: relative;
+    align-items: stretch;
 }
 
-/* Globe fixes for light theme */
-.light-theme .globe-core {
-    background: radial-gradient(circle, var(--red-orange), rgba(194, 72, 34, 0.7));
+/* Ensure all testimonial cards are the same size */
+.testimonial-card>* {
+    flex: 1 0 auto;
 }
 
-.light-theme .globe-ring {
-    border-color: rgba(194, 72, 34, 0.2);
+.testimonial-controls {
+    margin-top: 2rem;
+    width: 100%;
+}
+
+/* Partnership slider improvement */
+.partnership-track {
+    display: flex;
+    align-items: center;
+    padding: 20px 0;
+}
+
+/* Fix for cube hover effects */
+.cube-face.hovered::before,
+.cube-face.hovered::after {
+    opacity: 0.8 !important;
+}
+
+/* Modal backdrop fix */
+.modal-backdrop {
+    z-index: 1040 !important;
+}
+
+/* Remove border from navbar toggler button */
+.navbar-toggler,
+.navbar-toggler:focus,
+.navbar-toggler:hover,
+.navbar-toggler:active {
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+/* If you have a custom class for the toggler */
+.custom-toggler {
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+/* Remove any border from the icon as well */
+.custom-toggler .navbar-toggler-icon {
+    border: none;
+}
+
+/* Remove focus ring/outline */
+.navbar-toggler:focus {
+    outline: 0 !important;
+}
+
+/* Fix for testimonial rating stars on mobile */
+.testimonial-author {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    margin-top: auto;
+    padding-top: 20px;
+}
+
+/* Ensure author info and rating stay together */
+.author-info {
+    flex: 1;
+    min-width: 200px;
+}
+
+.rating {
+    display: flex;
+    gap: 4px;
+    flex-shrink: 0;
+}
+
+/* Mobile-specific fixes */
+@media (max-width: 768px) {
+    .testimonial-author {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .rating {
+        align-self: flex-start;
+    }
+
+    /* Ensure stars are visible */
+    .rating i {
+        font-size: 16px !important;
+        margin-right: 2px;
+    }
+}
+
+/* For very small screens */
+@media (max-width: 480px) {
+    .testimonial-author {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: nowrap;
+    }
+
+    .author-info {
+        min-width: unset;
+    }
+
+    .rating {
+        margin-left: auto;
+        padding-left: 10px;
+    }
+
+    .rating i {
+        font-size: 14px !important;
+    }
 }
