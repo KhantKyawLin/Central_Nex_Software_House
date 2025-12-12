@@ -1,6 +1,6 @@
 /**
  * Central Nex Software House - Main JavaScript File
- * Version 1.1.0 - Updated with stacked testimonials and compact globe
+ * Version 1.2.0 - Added enhanced form submission with FormSubmit.co
  */
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -64,9 +64,9 @@ document.addEventListener('DOMContentLoaded', function () {
         document.body.classList.remove('modal-open');
     });
 
-
+    // ============================
     // Theme Toggle Functionality
-
+    // ============================
     const themeToggle = document.getElementById('themeToggle');
     const themeIcon = document.getElementById('themeIcon');
     const body = document.body;
@@ -501,11 +501,9 @@ document.addEventListener('DOMContentLoaded', function () {
     // Handle window resize for cases
     window.addEventListener('resize', updateCaseDisplay);
 
-
     // ============================
-    // Simple Testimonial Slider
+    // Testimonials Section
     // ============================
-
     const testimonialSlides = document.querySelectorAll('.testimonial-slide');
     const prevTestimonialBtn = document.getElementById('prevTestimonial');
     const nextTestimonialBtn = document.getElementById('nextTestimonial');
@@ -513,61 +511,10 @@ document.addEventListener('DOMContentLoaded', function () {
     const totalTestimonialsSpan = document.getElementById('totalTestimonials');
     const totalTestimonials = testimonialSlides.length;
 
-
     // Initialize testimonials
-    function initTestimonialSlider() {
-        if (totalTestimonialsSpan) totalTestimonialsSpan.textContent = totalTestimonials;
-        updateTestimonialSlider();
-        updateTestimonialButtons();
-        adjustLayoutForMobile();
-    }
-
-    // Update slider display
-    function updateTestimonialSlider() {
-        testimonialSlides.forEach((slide, index) => {
-            slide.classList.remove('active');
-            if (index === currentTestimonialIndex) {
-                slide.classList.add('active');
-            }
-        });
-
-        if (currentTestimonialSpan) currentTestimonialSpan.textContent = currentTestimonialIndex + 1;
-
-        // Adjust layout for mobile
-        adjustLayoutForMobile();
-    }
-
-    // Update navigation buttons
-    function updateTestimonialButtons() {
-        if (prevTestimonialBtn) {
-            prevTestimonialBtn.disabled = currentTestimonialIndex === 0;
-            prevTestimonialBtn.style.opacity = prevTestimonialBtn.disabled ? '0.3' : '1';
-            prevTestimonialBtn.style.cursor = prevTestimonialBtn.disabled ? 'not-allowed' : 'pointer';
-        }
-
-        if (nextTestimonialBtn) {
-            nextTestimonialBtn.disabled = currentTestimonialIndex === totalTestimonials - 1;
-            nextTestimonialBtn.style.opacity = nextTestimonialBtn.disabled ? '0.3' : '1';
-            nextTestimonialBtn.style.cursor = nextTestimonialBtn.disabled ? 'not-allowed' : 'pointer';
-        }
-    }
-
-    // Adjust layout for mobile screens
-    function adjustLayoutForMobile() {
-        const isMobile = window.innerWidth <= 768;
-        const testimonialCard = document.querySelector('.testimonial-card.active');
-        const navigation = document.querySelector('.stack-navigation');
-
-        if (isMobile && testimonialCard && navigation) {
-            // Ensure card has proper margin above navigation
-            const cardBottom = testimonialCard.getBoundingClientRect().bottom;
-            const navTop = navigation.getBoundingClientRect().top;
-
-            if (cardBottom > navTop - 10) { // If card is too close to navigation
-                testimonialCard.style.marginBottom = '1.5rem';
-            }
-        }
-    }
+    if (totalTestimonialsSpan) totalTestimonialsSpan.textContent = totalTestimonials;
+    updateTestimonialSlider();
+    updateTestimonialButtons();
 
     // Event listeners for testimonials
     if (prevTestimonialBtn) {
@@ -576,7 +523,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 currentTestimonialIndex--;
                 updateTestimonialSlider();
                 updateTestimonialButtons();
-                animateSliderChange();
             }
         });
     }
@@ -587,187 +533,317 @@ document.addEventListener('DOMContentLoaded', function () {
                 currentTestimonialIndex++;
                 updateTestimonialSlider();
                 updateTestimonialButtons();
-                animateSliderChange();
             }
         });
     }
 
-    // Add animation effect
-    function animateSliderChange() {
-        const activeSlide = document.querySelector('.testimonial-slide.active');
-        if (activeSlide) {
-            activeSlide.style.animation = 'none';
-            setTimeout(() => {
-                activeSlide.style.animation = '';
-            }, 10);
+    function updateTestimonialSlider() {
+        testimonialSlides.forEach((slide, index) => {
+            slide.classList.remove('active');
+            if (index === currentTestimonialIndex) {
+                slide.classList.add('active');
+            }
+        });
+
+        if (currentTestimonialSpan) currentTestimonialSpan.textContent = currentTestimonialIndex + 1;
+    }
+
+    function updateTestimonialButtons() {
+        if (prevTestimonialBtn) {
+            prevTestimonialBtn.disabled = currentTestimonialIndex === 0;
+            prevTestimonialBtn.style.opacity = prevTestimonialBtn.disabled ? '0.5' : '1';
+            prevTestimonialBtn.style.cursor = prevTestimonialBtn.disabled ? 'not-allowed' : 'pointer';
+        }
+
+        if (nextTestimonialBtn) {
+            nextTestimonialBtn.disabled = currentTestimonialIndex === totalTestimonials - 1;
+            nextTestimonialBtn.style.opacity = nextTestimonialBtn.disabled ? '0.5' : '1';
+            nextTestimonialBtn.style.cursor = nextTestimonialBtn.disabled ? 'not-allowed' : 'pointer';
         }
     }
 
-
-
-
-    // Initialize everything when DOM is loaded
-    document.addEventListener('DOMContentLoaded', () => {
-        initTestimonialSlider();
-
-
-        // Add resize listener
-        window.addEventListener('resize', handleResize);
-    });
-
-
     // ============================
-    // Contact Form
+    // Contact Form Submission with FormSubmit.co
     // ============================
+   
     const contactForm = document.getElementById('contactForm');
     if (contactForm) {
-        contactForm.addEventListener('submit', function (e) {
+        contactForm.addEventListener('submit', async function (e) {
             e.preventDefault();
 
+            // Validate form before submission
+            if (!validateForm()) {
+                return;
+            }
+
             // Get form values
-            const name = document.getElementById('name').value.trim();
-            const email = document.getElementById('email').value.trim();
-            const company = document.getElementById('company').value.trim();
-            const message = document.getElementById('message').value.trim();
-
-            // Basic validation
-            if (!name || !email || !message) {
-                showNotification('Please fill in all required fields.', 'error');
-                return;
-            }
-
-            if (!isValidEmail(email)) {
-                showNotification('Please enter a valid email address.', 'error');
-                return;
-            }
+            const formData = {
+                name: document.getElementById('name').value.trim(),
+                email: document.getElementById('email').value.trim(),
+                phone: document.getElementById('phone') ? document.getElementById('phone').value.trim() : '',
+                company: document.getElementById('company').value.trim(),
+                message: document.getElementById('message').value.trim(),
+                privacyPolicy: document.getElementById('privacyPolicy') ? document.getElementById('privacyPolicy').checked : true,
+                date: new Date().toLocaleString(),
+                source: 'Central Nex Website',
+                _subject: 'New Contact Form Submission from Central Nex',
+                _template: 'table'
+            };
 
             // Show loading state
-            const submitBtn = contactForm.querySelector('button[type="submit"]');
-            const originalText = submitBtn.innerHTML;
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-            submitBtn.disabled = true;
+            const submitBtn = document.getElementById('submitBtn');
+            const submitText = document.getElementById('submitText');
+            const submitSpinner = document.getElementById('submitSpinner');
 
-            // Simulate API call
-            setTimeout(() => {
-                // In a real application, you would send this data to a server
-                console.log('Form submitted:', { name, email, company, message });
+            if (submitBtn) {
+                submitBtn.disabled = true;
+                if (submitText) submitText.textContent = 'Sending...';
+                if (submitSpinner) submitSpinner.classList.remove('d-none');
+            }
 
-                // Show success message
-                showNotification('Thank you for your message! We will get back to you soon.', 'success');
+            try {
+                // Send to FormSubmit.co
+                const response = await fetch("https://formsubmit.co/ajax/khantkyawlinn.kkl@gmail.com", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Accept": "application/json"
+                    },
+                    body: JSON.stringify(formData)
+                });
 
-                // Reset form
-                contactForm.reset();
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
 
-                // Reset button
-                submitBtn.innerHTML = originalText;
-                submitBtn.disabled = false;
-            }, 1500);
+                const data = await response.json();
+
+                if (data.success === "true") {
+                    // Show success message
+                    showNotification('Thank you! Your message has been sent successfully. We will get back to you soon.', 'success');
+
+                    // Reset form
+                    contactForm.reset();
+                    contactForm.classList.remove('was-validated');
+
+                    // Remove validation classes
+                    document.querySelectorAll('.form-control, .form-check-input').forEach(input => {
+                        input.classList.remove('is-valid', 'is-invalid');
+                    });
+
+                    // Scroll to top of contact section
+                    const contactSection = document.getElementById('contact');
+                    if (contactSection) {
+                        contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                } else {
+                    throw new Error('Form submission failed');
+                }
+            } catch (error) {
+                console.error('Form submission error:', error);
+                showNotification('Failed to send message. Please try again or contact us directly.', 'error');
+            } finally {
+                // Reset button state
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                    if (submitText) submitText.textContent = 'Send Message';
+                    if (submitSpinner) submitSpinner.classList.add('d-none');
+                }
+            }
         });
 
-        // Form field validation on blur
-        const formFields = contactForm.querySelectorAll('input, textarea');
-        formFields.forEach(field => {
-            field.addEventListener('blur', function () {
+        // Enhanced form validation
+        const formInputs = contactForm.querySelectorAll('input, textarea, select');
+        formInputs.forEach(input => {
+            // Real-time validation on blur
+            input.addEventListener('blur', function () {
                 validateField(this);
             });
 
-            field.addEventListener('input', function () {
-                clearFieldError(this);
+            // Clear validation on input
+            input.addEventListener('input', function () {
+                if (this.checkValidity()) {
+                    this.classList.remove('is-invalid');
+                    this.classList.add('is-valid');
+                } else {
+                    this.classList.remove('is-valid');
+                }
             });
         });
     }
 
-    // Helper functions for form validation
-    function isValidEmail(email) {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return emailRegex.test(email);
+    // Helper function for form validation
+    function validateForm() {
+        let isValid = true;
+
+        // Check required fields
+        const requiredFields = contactForm.querySelectorAll('[required]');
+        requiredFields.forEach(field => {
+            if (!validateField(field)) {
+                isValid = false;
+            }
+        });
+
+        // Check email format
+        const emailField = document.getElementById('email');
+        if (emailField && emailField.value.trim() && !isValidEmail(emailField.value.trim())) {
+            showFieldError(emailField, 'Please enter a valid email address');
+            isValid = false;
+        }
+
+        // Check privacy policy
+        const privacyPolicyField = document.getElementById('privacyPolicy');
+        if (privacyPolicyField && !privacyPolicyField.checked) {
+            showFieldError(privacyPolicyField, 'You must agree to the privacy policy');
+            isValid = false;
+        }
+
+        if (!isValid) {
+            showNotification('Please fill in all required fields correctly.', 'error');
+        }
+
+        return isValid;
     }
 
+    // Individual field validation
     function validateField(field) {
         const value = field.value.trim();
         const fieldId = field.id;
+        const fieldName = field.name;
 
+        // Clear existing validation
+        clearFieldError(field);
+
+        // Check required fields
         if (field.required && !value) {
             showFieldError(field, 'This field is required');
             return false;
         }
 
-        if (fieldId === 'email' && value && !isValidEmail(value)) {
+        // Email validation
+        if ((fieldId === 'email' || fieldName === 'email') && value && !isValidEmail(value)) {
             showFieldError(field, 'Please enter a valid email address');
             return false;
         }
 
-        clearFieldError(field);
+        // Privacy policy validation
+        if ((fieldId === 'privacyPolicy' || fieldName === 'privacyPolicy') && !field.checked) {
+            showFieldError(field, 'You must agree to the privacy policy');
+            return false;
+        }
+
+        // Mark as valid
+        field.classList.add('is-valid');
         return true;
+    }
+
+    function isValidEmail(email) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
     }
 
     function showFieldError(field, message) {
         clearFieldError(field);
 
         const errorDiv = document.createElement('div');
-        errorDiv.className = 'field-error';
+        errorDiv.className = 'invalid-feedback';
         errorDiv.textContent = message;
-        errorDiv.style.color = 'var(--red-orange)';
-        errorDiv.style.fontSize = '0.8rem';
-        errorDiv.style.marginTop = '0.25rem';
+        errorDiv.style.display = 'block';
 
         field.parentNode.appendChild(errorDiv);
         field.classList.add('is-invalid');
     }
 
     function clearFieldError(field) {
-        const errorDiv = field.parentNode.querySelector('.field-error');
+        const errorDiv = field.parentNode.querySelector('.invalid-feedback');
         if (errorDiv) {
             errorDiv.remove();
         }
-        field.classList.remove('is-invalid');
+        field.classList.remove('is-invalid', 'is-valid');
     }
 
+    // ============================
+    // Notification System
+    // ============================
     function showNotification(message, type) {
+        // Remove any existing notifications
+        const existingNotifications = document.querySelectorAll('.custom-notification');
+        existingNotifications.forEach(notification => notification.remove());
+
         // Create notification element
         const notification = document.createElement('div');
-        notification.className = `notification notification-${type}`;
-        notification.textContent = message;
+        notification.className = `custom-notification notification-${type}`;
+        notification.innerHTML = `
+            <div class="notification-content">
+                <i class="fas ${type === 'success' ? 'fa-check-circle' : type === 'error' ? 'fa-exclamation-circle' : 'fa-info-circle'} me-2"></i>
+                <span>${message}</span>
+                <button class="notification-close" aria-label="Close notification">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        `;
+
+        // Add styles
         notification.style.cssText = `
             position: fixed;
             top: 20px;
             right: 20px;
+            z-index: 9999;
+            animation: slideIn 0.3s ease-out;
+            max-width: 400px;
+            min-width: 300px;
+        `;
+
+        const contentStyle = `
+            display: flex;
+            align-items: center;
             padding: 1rem 1.5rem;
             border-radius: 8px;
             color: white;
             font-weight: 500;
-            z-index: 9999;
-            animation: slideIn 0.3s ease-out;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
             font-family: 'Poppins', sans-serif;
-            max-width: 300px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            background: ${type === 'success' ? 'var(--dark-blue)' : type === 'error' ? '#dc3545' : 'var(--dark-blue)'};
+            border-left: 4px solid ${type === 'success' ? '#28a745' : type === 'error' ? '#c82333' : 'var(--red-orange)'};
         `;
 
-        if (type === 'success') {
-            notification.style.backgroundColor = 'var(--dark-blue)';
-            notification.style.borderLeft = '4px solid #e65b32';
-        } else if (type === 'error') {
-            notification.style.backgroundColor = '#dc3545';
-            notification.style.borderLeft = '4px solid #c82333';
-        } else {
-            notification.style.backgroundColor = 'var(--dark-blue)';
-            notification.style.borderLeft = '4px solid #e65b32';
-        }
+        notification.querySelector('.notification-content').style.cssText = contentStyle;
+
+        // Close button
+        const closeBtn = notification.querySelector('.notification-close');
+        closeBtn.style.cssText = `
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            margin-left: auto;
+            padding: 0.25rem;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        `;
+
+        closeBtn.addEventListener('mouseenter', () => closeBtn.style.opacity = '1');
+        closeBtn.addEventListener('mouseleave', () => closeBtn.style.opacity = '0.7');
+        closeBtn.addEventListener('click', () => {
+            notification.style.animation = 'slideOut 0.3s ease-out';
+            setTimeout(() => notification.remove(), 300);
+        });
 
         document.body.appendChild(notification);
 
-        // Remove notification after 5 seconds
-        setTimeout(() => {
+        // Auto-remove after 5 seconds
+        const autoRemoveTimer = setTimeout(() => {
             notification.style.animation = 'slideOut 0.3s ease-out';
             setTimeout(() => notification.remove(), 300);
         }, 5000);
+
+        // Clear timer if notification is manually closed
+        closeBtn.addEventListener('click', () => clearTimeout(autoRemoveTimer));
     }
 
     // ============================
     // Initialize Everything
     // ============================
-
-
 
     // Re-initialize on window resize
     let resizeTimer;
@@ -775,56 +851,8 @@ document.addEventListener('DOMContentLoaded', function () {
         clearTimeout(resizeTimer);
         resizeTimer = setTimeout(() => {
             updateCaseDisplay();
-            updateTestimonialDisplay();
+            updateTestimonialSlider();
         }, 250);
-    });
-
-
-
-    if (body) {
-        themeObserver.observe(body, {
-            attributes: true,
-            attributeFilter: ['class']
-        });
-    }
-
-    // ============================
-    // Additional Effects & Animations
-    // ============================
-
-    // Add scroll animations for sections
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-
-                // Add special animation for cube when hero section is in view
-                if (entry.target.id === 'hero-section' && cubeWrapper) {
-                    cubeWrapper.style.animationPlayState = 'running';
-                    isCubeSpinning = true;
-                }
-            } else {
-                // Pause cube animation when not in view
-                if (entry.target.id === 'hero-section' && cubeWrapper) {
-                    cubeWrapper.style.animationPlayState = 'paused';
-                    isCubeSpinning = false;
-                }
-            }
-        });
-    }, observerOptions);
-
-    // Observe sections for animations
-    sections.forEach(section => {
-        section.style.opacity = '0';
-        section.style.transform = 'translateY(20px)';
-        section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-        observer.observe(section);
     });
 
     // Add CSS for animations
