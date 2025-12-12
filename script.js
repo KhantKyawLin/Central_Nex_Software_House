@@ -603,62 +603,19 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    // ============================
-    // Black Rotating Sphere
-    // ============================
-    function createBlackRotatingSphere() {
-        const sphereWrapper = document.getElementById('sphere');
-        if (!sphereWrapper) {
-            console.error('Sphere wrapper element not found!');
-            return;
-        }
 
-        // Clear existing content
-        sphereWrapper.innerHTML = '';
 
-        // Create the black rotating sphere
-        const sphere = document.createElement('div');
-        sphere.className = 'black-sphere';
-        sphereWrapper.appendChild(sphere);
-
-        console.log('Black rotating sphere created successfully');
-    }
-
-    // Window resize handler
-    function handleResize() {
-        adjustLayoutForMobile();
-
-        // Adjust sphere size on very small screens
-        const sphere = document.querySelector('.black-sphere');
-        const scene = document.querySelector('.scene');
-
-        if (sphere && scene) {
-            const isVerySmall = window.innerWidth <= 360;
-            if (isVerySmall) {
-                scene.style.minHeight = '140px';
-            }
-        }
-    }
 
     // Initialize everything when DOM is loaded
     document.addEventListener('DOMContentLoaded', () => {
         initTestimonialSlider();
-        createBlackRotatingSphere();
+
 
         // Add resize listener
         window.addEventListener('resize', handleResize);
     });
 
-    // Fallback initialization
-    window.addEventListener('load', () => {
-        // Re-check if sphere was created
-        if (!document.querySelector('.black-sphere')) {
-            createBlackRotatingSphere();
-        }
 
-        // Initial layout adjustment
-        adjustLayoutForMobile();
-    });
     // ============================
     // Contact Form
     // ============================
@@ -787,14 +744,14 @@ document.addEventListener('DOMContentLoaded', function () {
         `;
 
         if (type === 'success') {
-            notification.style.backgroundColor = 'var(--red-orange)';
+            notification.style.backgroundColor = 'var(--dark-blue)';
             notification.style.borderLeft = '4px solid #e65b32';
         } else if (type === 'error') {
             notification.style.backgroundColor = '#dc3545';
             notification.style.borderLeft = '4px solid #c82333';
         } else {
-            notification.style.backgroundColor = '#17a2b8';
-            notification.style.borderLeft = '4px solid #138496';
+            notification.style.backgroundColor = 'var(--dark-blue)';
+            notification.style.borderLeft = '4px solid #e65b32';
         }
 
         document.body.appendChild(notification);
@@ -810,24 +767,19 @@ document.addEventListener('DOMContentLoaded', function () {
     // Initialize Everything
     // ============================
 
-    // Initialize globe with new compact design
-    generateCompactGlobe();
+
 
     // Re-initialize on window resize
     let resizeTimer;
     window.addEventListener('resize', () => {
         clearTimeout(resizeTimer);
         resizeTimer = setTimeout(() => {
-            generateCompactGlobe();
             updateCaseDisplay();
             updateTestimonialDisplay();
         }, 250);
     });
 
-    // Re-generate globe on theme change
-    const themeObserver = new MutationObserver(() => {
-        generateCompactGlobe();
-    });
+
 
     if (body) {
         themeObserver.observe(body, {
