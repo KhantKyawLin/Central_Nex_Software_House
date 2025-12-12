@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Central Nex | Software Excellence</title>
+    <meta name="description"
+        content="Central Nex - Your reliable partner for End-to-End Digital Solutions and Custom Software Development.">
+
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body class="dark-theme">
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg fixed-top" id="mainNavbar">
+        <div class="container-xl">
+            <a class="navbar-brand text-white" href="#hero-section">
+                <div class="logo-image-container">
+                    <div class="logo-border-animation">
+                        <div class="bottom-line"></div>
+                        <div class="left-line"></div>
+                    </div>
+                    <!-- Dark theme logo -->
+                    <img src="../image/Central_Nex_Icon.png" alt="Central Nex Logo" class="logo-img dark-logo"
+                        height="80">
+                    <!-- Light theme logo -->
+                    <img src="../image/Central_Nex_Icon.png" alt="Central Nex Logo" class="logo-img light-logo"
+                        height="80" style="display: none;">
+                </div>
+                <span class="brand-text">CENTRAL NEX</span>
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon custom-toggler"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item"><a class="nav-link" href="#partnerships">Partnerships</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about-us">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#what-we-do">What We Do</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#cases">Cases</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#testimonials">Testimonials</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                </ul>
+
+                <div class="d-flex align-items-center gap-3">
+                    <!-- Theme Toggle -->
+                    <button class="btn theme-toggle-btn" id="themeToggle" aria-label="Toggle theme">
+                        <i class="fas fa-moon" id="themeIcon"></i>
+                    </button>
+
+                    <a href="#contact" class="btn primary-cta-btn fw-bold ms-lg-3">Book a Strategy Call</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="hero-section" class="d-flex align-items-center">
+        <div class="container-xl">
+            <div class="row align-items-center">
+                <div class="col-lg-7 py-5">
+                    <h1 class="display-3 fw-bold text-white mb-4">Software Excellence. Built for Tomorrow.</h1>
+                    <p class="lead text-light-gray mb-5">
+                        Your reliable partner for End-to-End Digital Solutions and Custom Software Development.
+                    </p>
+
+                    <div class="d-flex flex-column flex-md-row gap-3 mb-5">
+                        <a href="#cases" class="btn secondary-cta-btn btn-lg fw-bold">
+                            <span class="me-2">&nearr;</span> Explore Our Cases
+                        </a>
+                        <a href="#contact" class="btn primary-cta-btn btn-lg fw-bold">
+                            <span class="me-2">&nearr;</span> Book a Strategy Call
+                        </a>
+                    </div>
+                </div>
+
+                <div
+                    class="col-lg-5 d-flex justify-content-center align-items-center position-relative cube-wrapper-section">
+                    <div class="cube-container">
+                        <div class="cube-scene-container">
+                            <div class="cube-wrapper">
+                                <div class="cube-face front"></div>
+                                <div class="cube-face back"></div>
+                                <div class="cube-face right"></div>
+                                <div class="cube-face left"></div>
+                                <div class="cube-face top"></div>
+                                <div class="cube-face bottom"></div>
+                            </div>
+                        </div>
+
+                        <!-- Floating elements with tooltips -->
+                        <div class="floating-element fe1" data-tooltip="Custom Code Solutions">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <div class="floating-element fe2" data-tooltip="Cloud Services">
+                            <i class="fas fa-cloud"></i>
+                        </div>
+                        <div class="floating-element fe3" data-tooltip="Database Management">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <div class="floating-element fe4" data-tooltip="Mobile Development">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Partnerships Section -->
+    <section id="partnerships" class="py-5 py-md-5 py-lg-7">
+        <div class="container-xl">
+            <div class="row align-items-center">
+                <div class="col-md-3 text-center text-md-start mb-4 mb-md-0">
+                    <h2 class="display-5 fw-bold text-white partnership-heading">
+                        <i class="fa-solid fa-handshake me-2" style="color: var(--red-orange);"></i>
+                        OUR
+                        <span class="d-block">PARTNERSHIPS</span>
+                    </h2>
+                </div>
+
+                <div class="col-md-9">
+                    <div class="partnership-slider-container">
+                        <div class="partnership-track">
+                            <!-- Original Items -->
+                            <div class="partnership-item">
+                                <img src="../image/M_Boss.png" class="img-fluid partnership-logo" alt="M Boss">
+                                <p class="logo-caption text-light-gray">M Boss</p>
+                            </div>
+                            <div class="partnership-item">
+                                <img src="../image/KBTC.png" class="img-fluid partnership-logo" alt="Central">
+                                <p class="logo-caption text-light-gray">Central</p>
+                            </div>
+                            <div class="partnership-item">
+                                <img src="../image/Central_Core.png" class="img-fluid partnership-logo" alt="Central 1">
+                                <p class="logo-caption text-light-gray">Central 1</p>
+                            </div>
+                            <div class="partnership-item">
+                                <img src="../image/central_international_school.png" class="img-fluid partnership-logo" alt="Central 2">
+                                <p class="logo-caption text-light-gray">Central 2</p>
+                            </div>
+                            <div class="partnership-item">
+                                <img src="../image/trusted_shield.png" class="img-fluid partnership-logo" alt="Central 3">
+                                <p class="logo-caption text-light-gray">Central 3</p>
+                            </div>
+
+                            <!-- Duplicated Items for Seamless Animation -->
+                            <div class="partnership-item">
+                                <img src="../image/M_Boss.png" class="img-fluid partnership-logo" alt="M Boss">
+                                <p class="logo-caption text-light-gray">M Boss</p>
+                            </div>
+                            <div class="partnership-item">
+                                <img src="../image/KBTC.png" class="img-fluid partnership-logo" alt="Central">
+                                <p class="logo-caption text-light-gray">Central</p>
+                            </div>
+                            <div class="partnership-item">
+                                <img src="../image/Central_Core.png" class="img-fluid partnership-logo" alt="Central 1">
+                                <p class="logo-caption text-light-gray">Central 1</p>
+                            </div>
+                            <div class="partnership-item">
+                                <img src="../image/central_international_school.png" class="img-fluid partnership-logo" alt="Central 2">
+                                <p class="logo-caption text-light-gray">Central 2</p>
+                            </div>
+                            <div class="partnership-item">
+                                <img src="../image/trusted_shield.png" class="img-fluid partnership-logo" alt="Central 3">
+                                <p class="logo-caption text-light-gray">Central 3</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about-us" class="py-5 py-md-5 py-lg-7">
+        <div class="container-xl">
+            <div class="about-container p-4 p-lg-5">
+                <div class="row">
+                    <div class="col-lg-6 mb-5 mb-lg-0">
+                        <h2 class="display-5 fw-bold text-white mb-4 section-title">WHO <span class="text-highlight">WE
+                                ARE</span></h2>
+                        <div class="text-content">
+                            <p class="lead text-light-gray mb-4">
+                                Central Nex is a software development company that specializes in creating and
+                                integrating detailed technology solutions. Our main goal is making businesses more
+                                advanced, structured, and profitable.
+                            </p>
+                            <p class="text-light-gray mb-0">
+                                We are lucky to have a team of truly talented and passionate tech professionals who
+                                possess the expertise needed to lead your company to digitalization. We work closely
+                                with each of our customers, giving them the personalized service they need and keeping
+                                them updated and involved throughout the entire development process.
+                            </p>
+                            <p class="text-light-gray">
+                                We're driven by the smiles on our clients' faces when they tell us that we helped them
+                                finally create the product they've dreamed about. We love what we do and constantly
+                                strive to provide our customers with solutions that are a mix of innovative and reliable
+                                approaches. This allows us to build systems that serve your needs for years, so you can
+                                plan for decades.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="team-cards-wrapper">
+                            <div class="team-card d-flex align-items-center mb-4" data-bs-toggle="modal"
+                                data-bs-target="#victoriaModal">
+                                <div class="member-image-wrapper me-4">
+                                    <img src="../image/ceo (1).jpg" alt="Victoria, CEO, Co-Founder"
+                                        class="img-fluid member-image" loading="lazy">
+                                    <div class="glow-border"></div>
+                                </div>
+                                <div class="member-info">
+                                    <h4 class="text-white mb-0">Victoria</h4>
+                                    <p class="text-highlight mb-2">CEO, Co-Founder</p>
+                                </div>
+                            </div>
+
+                            <div class="team-card d-flex align-items-center mb-5" data-bs-toggle="modal"
+                                data-bs-target="#konstantinModal">
+                                <div class="member-image-wrapper me-4">
+                                    <img src="../image/ceo (2).jpg" alt="Konstantin, COO, Co-Founder"
+                                        class="img-fluid member-image" loading="lazy">
+                                    <div class="glow-border"></div>
+                                </div>
+                                <div class="member-info">
+                                    <h4 class="text-white mb-0">Konstantin</h4>
+                                    <p class="text-highlight mb-2">COO, Co-Founder</p>
+                                </div>
+                            </div>
+
+                            <div class="mission-box p-4">
+                                <p class="text-light-gray mb-3">
+                                    We are IT professionals who, eight years ago, decided to start a software
+                                    development company. We both have master's degrees in engineering and have dreamed
+                                    of having our own businesses since we were in university.
+                                </p>
+                                <p class="text-light-gray mb-0">
+                                    We are passionate about technology and are always striving to build a company that
+                                    provides qualified solutions across various industries. Whenever the Central Nex
+                                    team starts a new project, the primary goal is not just to develop software, but to
+                                    deliver solutions that perfectly align with your **business model, resources, and
+                                    vision.**
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- What We Do Section -->
+    <section id="what-we-do" class="py-5 py-md-5 py-lg-7">
+        <div class="container-xl">
+            <header class="text-center mb-5">
+                <h2 class="display-4 fw-bold text-white mb-3">WHAT <span class="text-highlight">WE DO</span></h2>
+                <p class="lead text-light-gray mx-auto" style="max-width: 800px;">
+                    Central Nex specializes in providing top-notch services that cover your unique needs and drive your
+                    success. Our expertise lies in custom <span class="text-highlight">software development, and digital
+                        solutions</span> that perfectly align with your business goals and challenges.
+                </p>
+            </header>
+
+            <!-- Tab Navigation -->
+            <div class="d-flex justify-content-center mb-5">
+                <div class="nav nav-pills custom-tabs" id="whatWeDoTabs" role="tablist">
+                    <button class="nav-link custom-tab-link active" id="services-tab" data-bs-toggle="pill"
+                        data-bs-target="#services" type="button" role="tab" aria-controls="services"
+                        aria-selected="true">
+                        <i class="bi bi-gear me-2"></i> Services
+                    </button>
+                    <button class="nav-link custom-tab-link" id="industries-tab" data-bs-toggle="pill"
+                        data-bs-target="#industries" type="button" role="tab" aria-controls="industries"
+                        aria-selected="false">
+                        <i class="bi bi-building me-2"></i> Industries
+                    </button>
+                    <button class="nav-link custom-tab-link" id="technologies-tab" data-bs-toggle="pill"
+                        data-bs-target="#technologies" type="button" role="tab" aria-controls="technologies"
+                        aria-selected="false">
+                        <i class="bi bi-cpu me-2"></i> Technologies
+                    </button>
+                </div>
+            </div>
+
+            <!-- Tab Content -->
+            <div class="tab-content" id="whatWeDoTabContent">
+                <!-- Services Tab -->
+                <div class="tab-pane fade show active" id="services" role="tabpanel" aria-labelledby="services-tab">
+                    <div class="row g-4">
+                        <!-- Custom Software Development -->
+                        <div class="col-md-6 col-lg-4">
+                            <div class="service-card h-100">
+                                <div class="card-icon">
+                                    <i class="fas fa-code"></i>
+                                </div>
+                                <h3 class="card-title">Custom Software Development</h3>
+                                <p class="card-description">Tailored web, mobile, SaaS, and enterprise software
+                                    solutions designed specifically for your business needs and workflows.</p>
+                                <div class="card-features">
+                                    <span class="feature-badge">Web Applications</span>
+                                    <span class="feature-badge">Mobile Apps</span>
+                                    <span class="feature-badge">Enterprise Systems</span>
+                                </div>
+                                <a href="#contact" class="explore-btn">Explore More <i
+                                        class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+
+                        <!-- SaaS Development -->
+                        <div class="col-md-6 col-lg-4">
+                            <div class="service-card h-100">
+                                <div class="card-icon">
+                                    <i class="fas fa-cloud"></i>
+                                </div>
+                                <h3 class="card-title">SaaS Development</h3>
+                                <p class="card-description">End-to-end subscription-based platforms, MVPs, and scalable
+                                    SaaS solutions with recurring revenue models.</p>
+                                <div class="card-features">
+                                    <span class="feature-badge">MVP Development</span>
+                                    <span class="feature-badge">SaaS Architecture</span>
+                                    <span class="feature-badge">Scalability</span>
+                                </div>
+                                <a href="#contact" class="explore-btn">Explore More <i
+                                        class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+
+                        <!-- Digital Transformation -->
+                        <div class="col-md-6 col-lg-4">
+                            <div class="service-card h-100">
+                                <div class="card-icon">
+                                    <i class="fas fa-sync-alt"></i>
+                                </div>
+                                <h3 class="card-title">Digital Transformation</h3>
+                                <p class="card-description">Modernize your legacy systems with cutting-edge technologies
+                                    to improve efficiency and competitiveness.</p>
+                                <div class="card-features">
+                                    <span class="feature-badge">Legacy Migration</span>
+                                    <span class="feature-badge">Process Automation</span>
+                                    <span class="feature-badge">Cloud Integration</span>
+                                </div>
+                                <a href="#contact" class="explore-btn">Explore More <i
+                                        class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+
+                        <!-- UI/UX Design -->
+                        <div class="col-md-6 col-lg-4">
+                            <div class="service-card h-100">
+                                <div class="card-icon">
+                                    <i class="fas fa-palette"></i>
+                                </div>
+                                <h3 class="card-title">UI/UX Design</h3>
+                                <p class="card-description">User-centered design solutions that create engaging,
+                                    intuitive, and beautiful digital experiences.</p>
+                                <div class="card-features">
+                                    <span class="feature-badge">User Research</span>
+                                    <span class="feature-badge">Wireframing</span>
+                                    <span class="feature-badge">Prototyping</span>
+                                </div>
+                                <a href="#contact" class="explore-btn">Explore More <i
+                                        class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+
+                        <!-- Quality Assurance -->
+                        <div class="col-md-6 col-lg-4">
+                            <div class="service-card h-100">
+                                <div class="card-icon">
+                                    <i class="fas fa-shield-alt"></i>
+                                </div>
+                                <h3 class="card-title">Quality Assurance & Testing</h3>
+                                <p class="card-description">Comprehensive testing services ensuring software
+                                    reliability, performance, and security.</p>
+                                <div class="card-features">
+                                    <span class="feature-badge">Automated Testing</span>
+                                    <span class="feature-badge">Security Audits</span>
+                                    <span class="feature-badge">Performance Testing</span>
+                                </div>
+                                <a href="#contact" class="explore-btn">Explore More <i
+                                        class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+
+                        <!-- Maintenance & Support -->
+                        <div class="col-md-6 col-lg-4">
+                            <div class="service-card h-100">
+                                <div class="card-icon">
+                                    <i class="fas fa-headset"></i>
+                                </div>
+                                <h3 class="card-title">Maintenance & Support</h3>
+                                <p class="card-description">Ongoing technical support, updates, and maintenance to keep
+                                    your software running smoothly.</p>
+                                <div class="card-features">
+                                    <span class="feature-badge">24/7 Support</span>
+                                    <span class="feature-badge">Updates</span>
+                                    <span class="feature-badge">Monitoring</span>
+                                </div>
+                                <a href="#contact" class="explore-btn">Explore More <i
+                                        class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Industries Tab -->
+                <div class="tab-pane fade" id="industries" role="tabpanel" aria-labelledby="industries-tab">
+                    <div class="row g-4">
+                        <!-- Fintech -->
+                        <div class="col-md-6 col-lg-4">
+                            <div class="service-card h-100">
+                                <div class="card-icon">
+                                    <i class="fas fa-university"></i>
+                                </div>
+                                <h3 class="card-title">Fintech & Banking</h3>
+                                <p class="card-description">Secure, compliant financial software including digital
+                                    banking, payment systems, and trading platforms.</p>
+                                <div class="card-features">
+                                    <span class="feature-badge">Digital Banking</span>
+                                    <span class="feature-badge">Payment Systems</span>
+                                    <span class="feature-badge">Regulatory Compliance</span>
+                                </div>
+                                <a href="#contact" class="explore-btn">Explore More <i
+                                        class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+
+                        <!-- E-commerce -->
+                        <div class="col-md-6 col-lg-4">
+                            <div class="service-card h-100">
+                                <div class="card-icon">
+                                    <i class="fas fa-shopping-cart"></i>
+                                </div>
+                                <h3 class="card-title">E-commerce & Retail</h3>
+                                <p class="card-description">Scalable online shopping platforms, inventory management,
+                                    and customer relationship systems.</p>
+                                <div class="card-features">
+                                    <span class="feature-badge">Online Stores</span>
+                                    <span class="feature-badge">Inventory Systems</span>
+                                    <span class="feature-badge">CRM Solutions</span>
+                                </div>
+                                <a href="#contact" class="explore-btn">Explore More <i
+                                        class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+
+                        <!-- Healthcare -->
+                        <div class="col-md-6 col-lg-4">
+                            <div class="service-card h-100">
+                                <div class="card-icon">
+                                    <i class="fas fa-heartbeat"></i>
+                                </div>
+                                <h3 class="card-title">Healthcare & Medtech</h3>
+                                <p class="card-description">HIPAA-compliant healthcare software, telemedicine platforms,
+                                    and medical record management.</p>
+                                <div class="card-features">
+                                    <span class="feature-badge">Telemedicine</span>
+                                    <span class="feature-badge">EHR Systems</span>
+                                    <span class="feature-badge">Patient Portals</span>
+                                </div>
+                                <a href="#contact" class="explore-btn">Explore More <i
+                                        class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+
+                        <!-- Logistics -->
+                        <div class="col-md-6 col-lg-4">
+                            <div class="service-card h-100">
+                                <div class="card-icon">
+                                    <i class="fas fa-truck"></i>
+                                </div>
+                                <h3 class="card-title">Logistics & Supply Chain</h3>
+                                <p class="card-description">Optimized logistics software for route planning, fleet
+                                    management, and supply chain visibility.</p>
+                                <div class="card-features">
+                                    <span class="feature-badge">Fleet Management</span>
+                                    <span class="feature-badge">Route Optimization</span>
+                                    <span class="feature-badge">Supply Chain Tracking</span>
+                                </div>
+                                <a href="#contact" class="explore-btn">Explore More <i
+                                        class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+
+                        <!-- Education -->
+                        <div class="col-md-6 col-lg-4">
+                            <div class="service-card h-100">
+                                <div class="card-icon">
+                                    <i class="fas fa-graduation-cap"></i>
+                                </div>
+                                <h3 class="card-title">Education & EdTech</h3>
+                                <p class="card-description">Learning management systems, e-learning platforms, and
+                                    educational content delivery solutions.</p>
+                                <div class="card-features">
+                                    <span class="feature-badge">LMS Platforms</span>
+                                    <span class="feature-badge">E-learning</span>
+                                    <span class="feature-badge">Virtual Classrooms</span>
+                                </div>
+                                <a href="#contact" class="explore-btn">Explore More <i
+                                        class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+
+                        <!-- Real Estate -->
+                        <div class="col-md-6 col-lg-4">
+                            <div class="service-card h-100">
+                                <div class="card-icon">
+                                    <i class="fas fa-building"></i>
+                                </div>
+                                <h3 class="card-title">Real Estate & PropTech</h3>
+                                <p class="card-description">Property management software, virtual tours, and real estate
+                                    transaction platforms.</p>
+                                <div class="card-features">
+                                    <span class="feature-badge">Property Management</span>
+                                    <span class="feature-badge">Virtual Tours</span>
+                                    <span class="feature-badge">Transaction Platforms</span>
+                                </div>
+                                <a href="#contact" class="explore-btn">Explore More <i
+                                        class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Technologies Tab -->
+                <div class="tab-pane fade" id="technologies" role="tabpanel" aria-labelledby="technologies-tab">
+                    <div class="row g-4">
+                        <!-- Frontend Technologies -->
+                        <div class="col-md-6 col-lg-4">
+                            <div class="tech-card h-100">
+                                <div class="tech-icon">
+                                    <i class="fab fa-react"></i>
+                                </div>
+                                <h3 class="tech-title">Frontend Development</h3>
+                                <p class="tech-description">Modern frontend frameworks and libraries for responsive,
+                                    interactive user interfaces.</p>
+                                <div class="tech-stack">
+                                    <span class="tech-badge">React</span>
+                                    <span class="tech-badge">Vue.js</span>
+                                    <span class="tech-badge">Angular</span>
+                                    <span class="tech-badge">TypeScript</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Backend Technologies -->
+                        <div class="col-md-6 col-lg-4">
+                            <div class="tech-card h-100">
+                                <div class="tech-icon">
+                                    <i class="fas fa-server"></i>
+                                </div>
+                                <h3 class="tech-title">Backend Development</h3>
+                                <p class="tech-description">Robust server-side technologies for scalable and secure
+                                    backend systems.</p>
+                                <div class="tech-stack">
+                                    <span class="tech-badge">Node.js</span>
+                                    <span class="tech-badge">Python</span>
+                                    <span class="tech-badge">.NET</span>
+                                    <span class="tech-badge">Java</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Mobile Development -->
+                        <div class="col-md-6 col-lg-4">
+                            <div class="tech-card h-100">
+                                <div class="tech-icon">
+                                    <i class="fas fa-mobile-alt"></i>
+                                </div>
+                                <h3 class="tech-title">Mobile Development</h3>
+                                <p class="tech-description">Cross-platform and native mobile app development for iOS and
+                                    Android.</p>
+                                <div class="tech-stack">
+                                    <span class="tech-badge">React Native</span>
+                                    <span class="tech-badge">Flutter</span>
+                                    <span class="tech-badge">Swift</span>
+                                    <span class="tech-badge">Kotlin</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Cloud & DevOps -->
+                        <div class="col-md-6 col-lg-4">
+                            <div class="tech-card h-100">
+                                <div class="tech-icon">
+                                    <i class="fas fa-cloud"></i>
+                                </div>
+                                <h3 class="tech-title">Cloud & DevOps</h3>
+                                <p class="tech-description">Cloud infrastructure, containerization, and CI/CD pipeline
+                                    implementation.</p>
+                                <div class="tech-stack">
+                                    <span class="tech-badge">AWS</span>
+                                    <span class="tech-badge">Azure</span>
+                                    <span class="tech-badge">Docker</span>
+                                    <span class="tech-badge">Kubernetes</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Database -->
+                        <div class="col-md-6 col-lg-4">
+                            <div class="tech-card h-100">
+                                <div class="tech-icon">
+                                    <i class="fas fa-database"></i>
+                                </div>
+                                <h3 class="tech-title">Database Technologies</h3>
+                                <p class="tech-description">Relational and NoSQL databases for optimal data storage and
+                                    retrieval.</p>
+                                <div class="tech-stack">
+                                    <span class="tech-badge">PostgreSQL</span>
+                                    <span class="tech-badge">MySQL</span>
+                                    <span class="tech-badge">MongoDB</span>
+                                    <span class="tech-badge">Redis</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- AI/ML -->
+                        <div class="col-md-6 col-lg-4">
+                            <div class="tech-card h-100">
+                                <div class="tech-icon">
+                                    <i class="fas fa-brain"></i>
+                                </div>
+                                <h3 class="tech-title">AI & Machine Learning</h3>
+                                <p class="tech-description">Artificial intelligence and machine learning solutions for
+                                    data-driven insights.</p>
+                                <div class="tech-stack">
+                                    <span class="tech-badge">TensorFlow</span>
+                                    <span class="tech-badge">PyTorch</span>
+                                    <span class="tech-badge">OpenAI</span>
+                                    <span class="tech-badge">Computer Vision</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cases Section -->
+    <section id="cases" class="py-5 py-md-5 py-lg-7">
+        <div class="container-xl">
+            <header class="text-center mb-5">
+                <h2 class="display-4 fw-bold text-white mb-3">OUR <span class="text-highlight">CASES</span></h2>
+                <p class="lead text-light-gray mx-auto" style="max-width: 900px;">
+                    Our case studies provide insights into how we address challenges and create solutions tailored to
+                    our customers' needs.
+                </p>
+            </header>
+
+            <div class="cases-wrapper">
+                <!-- Card Stack Container -->
+                <div class="card-stack-container">
+                    <!-- Case Cards -->
+                    <div class="case-card active" data-index="0">
+                        <div class="case-details">
+                            <div class="case-tags mb-3">
+                                <span class="tag tag-primary">Healthcare Software</span>
+                                <span class="tag tag-secondary">Marketing & Sales</span>
+                            </div>
+                            <h3 class="text-white mb-3">Persuasion Systems</h3>
+                            <p class="text-light-gray mb-4">
+                                A modern platform designed to help clinics better understand their patients and provide
+                                valuable insights.
+                            </p>
+                            <a href="#contact" class="explore-link">Learn More <i class="bi bi-arrow-up-right"></i></a>
+                        </div>
+                        <div class="case-image-stack">
+                            <div class="image-placeholder">
+                                <i class="fas fa-laptop-medical"></i>
+                                <p>Healthcare Platform Dashboard</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="case-card" data-index="1">
+                        <div class="case-details">
+                            <div class="case-tags mb-3">
+                                <span class="tag tag-primary">Logistics</span>
+                                <span class="tag tag-secondary">Mobile App</span>
+                            </div>
+                            <h3 class="text-white mb-3">LogiTrack Pro</h3>
+                            <p class="text-light-gray mb-4">
+                                Transportation management system with real-time tracking, route optimization, and
+                                automated dispatch.
+                            </p>
+                            <a href="#contact" class="explore-link">Learn More <i class="bi bi-arrow-up-right"></i></a>
+                        </div>
+                        <div class="case-image-stack">
+                            <div class="image-placeholder">
+                                <i class="fas fa-truck"></i>
+                                <p>Logistics Dashboard</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="case-card" data-index="2">
+                        <div class="case-details">
+                            <div class="case-tags mb-3">
+                                <span class="tag tag-primary">Fintech</span>
+                                <span class="tag tag-secondary">SaaS</span>
+                            </div>
+                            <h3 class="text-white mb-3">Financial Nexus</h3>
+                            <p class="text-light-gray mb-4">
+                                Secure B2B financial analysis platform for small businesses with automated reporting
+                                features.
+                            </p>
+                            <a href="#contact" class="explore-link">Learn More <i class="bi bi-arrow-up-right"></i></a>
+                        </div>
+                        <div class="case-image-stack">
+                            <div class="image-placeholder">
+                                <i class="fas fa-chart-line"></i>
+                                <p>Financial Analytics Dashboard</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Navigation -->
+                <div class="stack-navigation text-center mt-5">
+                    <button id="prevCase" class="btn stack-nav-btn me-3" aria-label="Previous case study"
+                        title="Previous case study">
+                        <i class="fas fa-chevron-left" aria-hidden="true"></i> Previous
+                    </button>
+
+                    <span class="case-counter text-light-gray mx-3" aria-live="polite">
+                        Case <span id="currentCase">1</span> of <span id="totalCases">3</span>
+                    </span>
+
+                    <button id="nextCase" class="btn stack-nav-btn ms-3" aria-label="Next case study"
+                        title="Next case study">
+                        Next <i class="fas fa-chevron-right" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-5 py-md-5 py-lg-7">
+        <div class="container-xl">
+            <header class="text-center mb-5">
+                <h2 class="display-4 fw-bold text-white mb-3">CLIENTS' <span class="text-highlight">TESTIMONIALS</span>
+                </h2>
+                <p class="lead text-light-gray mx-auto" style="max-width: 900px;">
+                    <strong>Your positive feedback is always a warmth to our souls.</strong> In the modern world, there
+                    are
+                    a huge number of companies in the IT outsourcing market. When you choose us and express your
+                    gratitude
+                    at the end of a project, it means a lot to us — more than just words.
+                </p>
+            </header>
+
+            <div class="row align-items-stretch">
+                <!-- Globe Column -->
+                <div class="col-lg-5 mb-5 mb-lg-0 d-flex align-items-center">
+                    <div class="globe-wrapper w-100">
+                        <div class="globe-container text-center">
+                        <div class="scene">
+                            <div class="sphere-wrapper" id="sphere">
+                            </div>
+                        </div>
+                            <div class="globe-info mt-4">
+                                <h4 class="text-white mb-2">Global Reach</h4>
+                                <p class="text-light-gray mb-0">Serving clients across 4 continents</p>
+                                <div class="mt-3">
+                                    <div class="d-flex justify-content-center gap-4">
+                                        <div class="stat-item">
+                                            <div class="stat-number text-highlight">50+</div>
+                                            <div class="stat-label text-light-gray">Projects</div>
+                                        </div>
+                                        <div class="stat-item">
+                                            <div class="stat-number text-highlight">15+</div>
+                                            <div class="stat-label text-light-gray">Countries</div>
+                                        </div>
+                                        <div class="stat-item">
+                                            <div class="stat-number text-highlight">98%</div>
+                                            <div class="stat-label text-light-gray">Satisfaction</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonials Column -->
+                <div class="col-lg-7">
+                    <div class="testimonials-wrapper h-100 d-flex flex-column justify-content-center">
+                        <!-- Simple Testimonial Slider -->
+                        <div class="testimonial-slider position-relative">
+                            <div class="testimonial-slides-container position-relative" style="height: 400px;">
+                                <!-- Testimonial Slides -->
+                                <div class="testimonial-slide active" data-index="0">
+                                    <div class="testimonial-card h-100">
+                                        <div class="quote-icon mb-4">
+                                            <i class="fas fa-quote-left"></i>
+                                        </div>
+                                        <p class="testimonial-text mb-4">
+                                            The Central Nex team are amazing at what they do. We needed skilled
+                                            developers
+                                            in Node.js and React, and I was impressed by how quickly they selected
+                                            specialists who perfectly matched our specific requirements. We continue to
+                                            collaborate with this lovely company and remain confident that the
+                                            partnership
+                                            will stay as successful as it was from the very beginning.
+                                        </p>
+                                        <div class="testimonial-author mt-auto">
+                                            <div class="author-info">
+                                                <h4 class="text-white mb-0">James Olsen</h4>
+                                                <p class="text-light-gray mb-0">CTO, 3PL Fulfillment</p>
+                                            </div>
+                                            <div class="rating">
+                                                <i class="fas fa-star text-highlight"></i>
+                                                <i class="fas fa-star text-highlight"></i>
+                                                <i class="fas fa-star text-highlight"></i>
+                                                <i class="fas fa-star text-highlight"></i>
+                                                <i class="fas fa-star text-highlight"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="testimonial-slide" data-index="1">
+                                    <div class="testimonial-card h-100">
+                                        <div class="quote-icon mb-4">
+                                            <i class="fas fa-quote-left"></i>
+                                        </div>
+                                        <p class="testimonial-text mb-4">
+                                            It was a pleasure to work with Central Nex. They were very flexible in their
+                                            approach and responded to all the changes promptly. The team was always
+                                            available for updates, calls, and meetings, and delivered a great scope of
+                                            services for us. Their professionalism is remarkable.
+                                        </p>
+                                        <div class="testimonial-author mt-auto">
+                                            <div class="author-info">
+                                                <h4 class="text-white mb-0">Nadia Rechmann</h4>
+                                                <p class="text-light-gray mb-0">Product Manager, OnePageCRM</p>
+                                            </div>
+                                            <div class="rating">
+                                                <i class="fas fa-star text-highlight"></i>
+                                                <i class="fas fa-star text-highlight"></i>
+                                                <i class="fas fa-star text-highlight"></i>
+                                                <i class="fas fa-star text-highlight"></i>
+                                                <i class="fas fa-star text-highlight"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="testimonial-slide" data-index="2">
+                                    <div class="testimonial-card h-100">
+                                        <div class="quote-icon mb-4">
+                                            <i class="fas fa-quote-left"></i>
+                                        </div>
+                                        <p class="testimonial-text mb-4">
+                                            The Central Nex team exceeded our expectations, delivering exceptional
+                                            results
+                                            and enabling us to successfully launch our product ahead of the timeline we
+                                            had
+                                            promised our investors. Their attention to detail and commitment to quality
+                                            is
+                                            outstanding.
+                                        </p>
+                                        <div class="testimonial-author mt-auto">
+                                            <div class="author-info">
+                                                <h4 class="text-white mb-0">Michael Chen</h4>
+                                                <p class="text-light-gray mb-0">CEO, Docstribute</p>
+                                            </div>
+                                            <div class="rating">
+                                                <i class="fas fa-star text-highlight"></i>
+                                                <i class="fas fa-star text-highlight"></i>
+                                                <i class="fas fa-star text-highlight"></i>
+                                                <i class="fas fa-star text-highlight"></i>
+                                                <i class="fas fa-star text-highlight"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Navigation - Keeping your original style -->
+                            <div class="stack-navigation text-center mt-4">
+                                <button id="prevTestimonial" class="btn stack-nav-btn me-3"
+                                    aria-label="Previous testimonial" title="Previous testimonial">
+                                    <i class="fas fa-chevron-left" aria-hidden="true"></i> Previous
+                                </button>
+
+                                <span class="testimonial-counter text-light-gray mx-3" aria-live="polite">
+                                    Review <span id="currentTestimonial">1</span> of <span
+                                        id="totalTestimonials">3</span>
+                                </span>
+
+                                <button id="nextTestimonial" class="btn stack-nav-btn ms-3"
+                                    aria-label="Next testimonial" title="Next testimonial">
+                                    Next <i class="fas fa-chevron-right" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Contact Section -->
+    <section id="contact" class="py-5 py-md-5 py-lg-7">
+        <div class="container-xl">
+            <header class="text-center mb-5">
+                <h2 class="display-4 fw-bold text-white mb-3">GET IN <span class="text-highlight">TOUCH</span></h2>
+                <p class="lead text-light-gray mx-auto" style="max-width: 800px;">
+                    Ready to transform your business with custom software solutions? Let's discuss your project and
+                    create something amazing together.
+                </p>
+            </header>
+
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="contact-card p-4 p-lg-5">
+                        <form id="contactForm">
+                            <div class="row g-4">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="name" class="form-label text-light-gray">Full Name</label>
+                                        <input type="text" class="form-control" id="name" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="email" class="form-label text-light-gray">Email Address</label>
+                                        <input type="email" class="form-control" id="email" required>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label for="company" class="form-label text-light-gray">Company</label>
+                                        <input type="text" class="form-control" id="company">
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label for="message" class="form-label text-light-gray">Project Details</label>
+                                        <textarea class="form-control" id="message" rows="5" required></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-12 text-center">
+                                    <button type="submit" class="btn primary-cta-btn btn-lg fw-bold px-5">
+                                        Send Message <i class="fas fa-paper-plane ms-2"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-5">
+        <div class="container-xl">
+            <div class="row align-items-center">
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <div class="footer-logo d-flex align-items-center">
+                        <div class="logo-image-container me-3">
+                            <div class="logo-border-animation">
+                                <div class="bottom-line"></div>
+                                <div class="left-line"></div>
+                            </div>
+                            <!-- Dark theme logo -->
+                            <img src="../image/cn_nav_logo.jpg" alt="Central Nex Logo" class="logo-img dark-logo"
+                                height="60">
+                            <!-- Light theme logo -->
+                            <img src="../image/cn_nav_logo_light.jpg" alt="Central Nex Logo" class="logo-img light-logo"
+                                height="60" style="display: none;">
+                        </div>
+                        <div>
+                            <h4 class="text-white mb-1">CENTRAL NEX</h4>
+                            <p class="text-light-gray mb-0 small">Software Excellence</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-4 mb-lg-0 text-center">
+                    <p class="text-light-gray mb-0">&copy; 2025 Central Nex. All rights reserved.</p>
+                </div>
+                <div class="col-lg-4 text-lg-end">
+                    <div class="social-links">
+                        <a href="#" class="social-link" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="social-link" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="#" class="social-link" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Team Member Modals -->
+    <div class="modal fade" id="victoriaModal" tabindex="-1" aria-labelledby="victoriaModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content custom-modal">
+                <div class="modal-header border-0 pb-0">
+                    <button type="button" class="btn-close btn-close-custom" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4 p-md-5">
+                    <div class="row">
+                        <div class="col-md-4 text-center">
+                            <img src="../image/ceo (1).jpg" alt="Victoria Bio" class="img-fluid modal-bio-img mb-3">
+                            <h3 class="text-highlight">Victoria</h3>
+                            <p class="text-white mb-4">CEO, Co-Founder</p>
+                        </div>
+                        <div class="col-md-8 text-light-gray">
+                            <h4 class="text-white mb-3">Visionary Leadership</h4>
+                            <p>Victoria is the strategic engine behind Central Nex. With a Master's in Software
+                                Engineering and over a decade of experience, she specializes in translating complex
+                                business needs into scalable technical architectures. Her leadership ensures that every
+                                solution we deliver is not just coded impeccably but is also a perfect fit for our
+                                clients' long-term growth objectives.</p>
+                            <p>Before co-founding Central Nex, Victoria led digital transformation projects for major
+                                financial institutions, giving her deep insight into operational efficiency and security
+                                best practices.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="konstantinModal" tabindex="-1" aria-labelledby="konstantinModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content custom-modal">
+                <div class="modal-header border-0 pb-0">
+                    <button type="button" class="btn-close btn-close-custom" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4 p-md-5">
+                    <div class="row">
+                        <div class="col-md-4 text-center">
+                            <img src="../image/ceo (2).jpg" alt="Konstantin Bio" class="img-fluid modal-bio-img mb-3">
+                            <h3 class="text-highlight">Konstantin</h3>
+                            <p class="text-white mb-4">COO, Co-Founder</p>
+                        </div>
+                        <div class="col-md-8 text-light-gray">
+                            <h4 class="text-white mb-3">Operational Excellence</h4>
+                            <p>Konstantin ensures that Central Nex runs with unmatched efficiency and precision. Holding
+                                a Master's degree in Computer Science, his focus is on optimizing project pipelines,
+                                managing talent, and maintaining the highest standard of quality control. He is
+                                dedicated to fostering a work environment where innovation thrives and deadlines are
+                                consistently met.</p>
+                            <p>His background includes extensive work in agile methodology implementation and team
+                                scaling, making him critical to delivering complex projects on time and within budget
+                                for our global clientele.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
