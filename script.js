@@ -388,6 +388,373 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     // ============================
+    // Enhanced Partnerships Section - Manual Infinite Scroll
+    // ============================
+    const partnershipSlider = document.querySelector('.partnership-slider-container');
+    const partnershipTrack = document.querySelector('.partnership-track');
+    const partnershipItems = document.querySelectorAll('.partnership-item');
+
+    if (partnershipSlider && partnershipTrack && partnershipItems.length > 0) {
+        // Variables for manual scrolling
+        let isDragging = false;
+        let startX = 0;
+        let startScrollLeft = 0;
+        let velocity = 0;
+        let lastX = 0;
+        let lastTime = 0;
+        let momentumAnimationId = null;
+
+        // Store original items for infinite loop
+        const itemWidth = partnershipItems[0].offsetWidth + 20; // width + gap
+
+        // Create scroll indicator
+        const scrollIndicator = document.createElement('div');
+        scrollIndicator.className = 'scroll-indicator';
+        scrollIndicator.innerHTML = `
+        <span class="scroll-text">Scroll to explore</span>
+        <div class="scroll-dots">
+            <div class="scroll-dot"></div>
+            <div class="scroll-dot"></div>
+            <div class="scroll-dot"></div>
+        </div>
+    `;
+        partnershipSlider.appendChild(scrollIndicator);
+
+        // Initialize the track position
+        function initializeTrack() {
+            // Reset transform
+            partnershipTrack.style.transform = 'translateX(0)';
+            partnershipTrack.style.transition = 'none';
+
+            // Store track width for reference
+            partnershipTrack.trackWidth = partnershipTrack.scrollWidth;
+            partnershipTrack.halfTrackWidth = partnershipTrack.trackWidth / 2;
+
+            // Set initial position to middle (for infinite loop effect)
+            const initialOffset = -partnershipTrack.trackWidth / 4;
+            partnershipTrack.style.transform = `translateX(${initialOffset}px)`;
+            partnershipTrack.currentTranslate = initialOffset;
+
+            // Store for momentum calculations
+            partnershipTrack.lastTranslate = initialOffset;
+        }
+
+        // Handle infinite loop
+        function handleInfiniteLoop() {
+            const currentTranslate = partnershipTrack.currentTranslate;
+            const trackWidth = partnershipTrack.trackWidth;
+
+            // If we've scrolled too far right (positive translate), loop to left
+            if (currentTranslate > 0) {
+                partnershipTrack.style.transition = 'none';
+                partnershipTrack.style.transform = `translateX(${currentTranslate - trackWidth / 2}px)`;
+                partnershipTrack.currentTranslate = currentTranslate - trackWidth / 2;
+            }
+            // If we've scrolled too far left (negative translate), loop to right
+            else if (currentTranslate < -trackWidth / 2) {
+                partnershipTrack.style.transition = 'none';
+                partnershipTrack.style.transform = `translateX(${currentTranslate + trackWidth / 2}px)`;
+                partnershipTrack.currentTranslate = currentTranslate + trackWidth / 2;
+            }
+        }
+
+        // Mouse/Touch event handlers
+        function startDrag(e) {
+            isDragging = true;
+            partnershipSlider.classList.add('grabbing');
+
+            // Get initial position
+            const clientX = e.type.includes('mouse') ? e.clientX : e.touches[0].clientX;
+            startX = clientX;
+            startScrollLeft = partnershipTrack.currentTranslate || 0;
+
+            // Reset momentum
+            velocity = 0;
+            lastX = clientX;
+            lastTime = Date.now();
+
+            // Stop any ongoing momentum animation
+            if (momentumAnimationId) {
+                cancelAnimationFrame(momentumAnimationId);
+                momentumAnimationId = null;
+            }
+
+            // Remove transition for direct manipulation
+            partnershipTrack.style.transition = 'none';
+
+            // Hide scroll indicator while dragging
+            scrollIndicator.style.opacity = '0';
+
+            // Prevent text selection during drag
+            document.body.style.userSelect = 'none';
+        }
+
+        function doDrag(e) {
+            if (!isDragging) return;
+
+            e.preventDefault();
+
+            const clientX = e.type.includes('mouse') ? e.clientX : e.touches[0].clientX;
+            const deltaX = clientX - startX;
+
+            // Calculate new position
+            const newTranslate = startScrollLeft + deltaX;
+            partnershipTrack.style.transform = `translateX(${newTranslate}px)`;
+            partnershipTrack.currentTranslate = newTranslate;
+
+            // Calculate velocity for momentum
+            const currentTime = Date.now();
+            const deltaTime = currentTime - lastTime;
+
+            if (deltaTime > 0) {
+                const deltaXForVelocity = clientX - lastX;
+                velocity = deltaXForVelocity / deltaTime;
+            }
+
+            lastX = clientX;
+            lastTime = currentTime;
+
+            // Check for infinite loop
+            handleInfiniteLoop();
+        }
+
+        function endDrag() {
+            if (!isDragging) return;
+
+            isDragging = false;
+            partnershipSlider.classList.remove('grabbing');
+
+            // Restore text selection
+            document.body.style.userSelect = '';
+
+            // Show scroll indicator again
+            scrollIndicator.style.opacity = '0.7';
+
+            // Apply momentum if velocity is high enough
+            if (Math.abs(velocity) > 0.5) {
+                applyMomentum();
+            } else {
+                // Smooth snap back if no momentum
+                partnershipTrack.classList.add('momentum');
+                partnershipTrack.style.transition = 'transform 0.3s ease-out';
+
+                setTimeout(() => {
+                    partnershipTrack.classList.remove('momentum');
+                }, 300);
+            }
+        }
+
+        // Apply momentum scrolling
+        function applyMomentum() {
+            partnershipTrack.classList.add('momentum');
+
+            const friction = 0.96;
+            const minVelocity = 0.1;
+
+            function animateMomentum() {
+                if (Math.abs(velocity) < minVelocity) {
+                    partnershipTrack.classList.remove('momentum');
+                    return;
+                }
+
+                // Apply velocity
+                partnershipTrack.currentTranslate += velocity * 16; // 16ms frame
+                partnershipTrack.style.transform = `translateX(${partnershipTrack.currentTranslate}px)`;
+
+                // Apply friction
+                velocity *= friction;
+
+                // Check for infinite loop
+                handleInfiniteLoop();
+
+                // Continue animation
+                momentumAnimationId = requestAnimationFrame(animateMomentum);
+            }
+
+            animateMomentum();
+        }
+
+        // Mouse wheel scrolling
+        function handleWheel(e) {
+            e.preventDefault();
+
+            // Calculate scroll amount (more sensitive for wheel)
+            const wheelDelta = e.deltaY || e.deltaX || 0;
+            const scrollAmount = wheelDelta * 0.8; // Adjust sensitivity
+
+            // Apply scroll
+            partnershipTrack.classList.add('momentum');
+            partnershipTrack.style.transition = 'transform 0.2s ease-out';
+
+            // Add slight deceleration to wheel scrolling
+            velocity = scrollAmount * 0.1;
+            partnershipTrack.currentTranslate += scrollAmount;
+            partnershipTrack.style.transform = `translateX(${partnershipTrack.currentTranslate}px)`;
+
+            // Check for infinite loop
+            handleInfiniteLoop();
+
+            // Remove transition class after animation
+            setTimeout(() => {
+                partnershipTrack.classList.remove('momentum');
+            }, 200);
+        }
+
+        // Initialize
+        initializeTrack();
+
+        // Mouse events
+        partnershipSlider.addEventListener('mousedown', startDrag);
+        document.addEventListener('mousemove', doDrag);
+        document.addEventListener('mouseup', endDrag);
+
+        // Touch events
+        partnershipSlider.addEventListener('touchstart', startDrag, { passive: false });
+        partnershipSlider.addEventListener('touchmove', doDrag, { passive: false });
+        document.addEventListener('touchend', endDrag);
+
+        // Prevent context menu on long press
+        partnershipSlider.addEventListener('contextmenu', (e) => {
+            if (isDragging) e.preventDefault();
+        });
+
+        // Wheel events
+        partnershipSlider.addEventListener('wheel', handleWheel, { passive: false });
+
+        // Prevent default drag behavior
+        partnershipSlider.addEventListener('dragstart', (e) => e.preventDefault());
+
+        // Handle window resize
+        let resizeTimeout;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                initializeTrack();
+            }, 250);
+        });
+
+        // Auto-hide scroll indicator after 5 seconds of inactivity
+        let hideIndicatorTimeout;
+        let hideIndicatorTimer;
+
+        function resetHideIndicator() {
+            clearTimeout(hideIndicatorTimer);
+            scrollIndicator.style.opacity = '0.7';
+            hideIndicatorTimer = setTimeout(() => {
+                scrollIndicator.style.opacity = '0.3';
+            }, 5000);
+        }
+
+        // Reset hide timer on interaction
+        partnershipSlider.addEventListener('mousedown', resetHideIndicator);
+        partnershipSlider.addEventListener('touchstart', resetHideIndicator);
+        partnershipSlider.addEventListener('wheel', resetHideIndicator);
+        partnershipSlider.addEventListener('mouseenter', resetHideIndicator);
+
+        // Also reset on mouse leave (if user interacts outside)
+        partnershipSlider.addEventListener('mouseleave', () => {
+            if (!isDragging) {
+                resetHideIndicator();
+            }
+        });
+
+        // Initial hide timer
+        resetHideIndicator();
+
+        // ============================
+        // Enhanced Logo Click/Hover Effects
+        // ============================
+
+        // Track if we're currently in a drag operation to prevent accidental clicks
+        let dragStartTime = 0;
+        const DRAG_THRESHOLD = 100; // ms - time before considering it a drag vs click
+
+        partnershipItems.forEach(item => {
+            // Track touch/mouse down time
+            let downTime = 0;
+
+            item.addEventListener('mousedown', () => {
+                downTime = Date.now();
+            });
+
+            item.addEventListener('touchstart', () => {
+                downTime = Date.now();
+            });
+
+            // Add click effect
+            item.addEventListener('click', function (e) {
+                // Prevent click during drag or if it was a quick drag
+                const clickDuration = Date.now() - downTime;
+                if (isDragging || clickDuration > DRAG_THRESHOLD) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    return;
+                }
+
+                // Toggle active class
+                this.classList.toggle('active');
+
+                // Add clicked animation class
+                this.classList.add('clicked');
+
+                // Show notification with logo name
+                const logoName = this.querySelector('.logo-caption').textContent;
+                showNotification(`We are currently partnering with ${logoName} `, 'info');
+
+                // Remove clicked class after animation
+                setTimeout(() => {
+                    this.classList.remove('clicked');
+                }, 500);
+
+                // Remove active class after 2 seconds
+                setTimeout(() => {
+                    this.classList.remove('active');
+                }, 2000);
+            });
+
+            // Enhanced hover effect with delay for better UX
+            let hoverTimer;
+            item.addEventListener('mouseenter', function () {
+                if (isDragging) return;
+
+                hoverTimer = setTimeout(() => {
+                    this.style.zIndex = '10';
+                }, 100);
+            });
+
+            item.addEventListener('mouseleave', function () {
+                clearTimeout(hoverTimer);
+                if (!this.classList.contains('active')) {
+                    this.style.zIndex = '';
+                }
+            });
+
+            // Touch device hover simulation
+            item.addEventListener('touchstart', function () {
+                if (isDragging) return;
+
+                this.style.zIndex = '10';
+            });
+
+            item.addEventListener('touchend', function () {
+                if (!this.classList.contains('active')) {
+                    setTimeout(() => {
+                        this.style.zIndex = '';
+                    }, 500);
+                }
+            });
+        });
+
+        // Also add click prevention during drag to the entire slider
+        partnershipSlider.addEventListener('click', (e) => {
+            if (isDragging) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+        }, true);
+    }
+
+    // ============================
     // Cases Section - Stacked Cards
     // ============================
     const caseCards = document.querySelectorAll('.case-card');

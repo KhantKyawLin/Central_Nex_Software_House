@@ -732,14 +732,12 @@ body.modal-open {
 /* =============================================
    PARTNERSHIPS SECTION
    ============================================= */
-
 /* =============================================
-   PARTNERSHIPS SECTION - IMPROVED RESPONSIVENESS
-   ============================================= */
-
+PARTNERSHIPS SECTION - MANUAL INFINITE SCROLL=============================================*/
 #partnerships {
     background-color: var(--bg-secondary);
     padding: 4rem 0;
+    position: relative;
 }
 
 .partnership-heading {
@@ -755,6 +753,16 @@ body.modal-open {
     min-height: 140px;
     position: relative;
     margin-left: 0;
+    cursor: grab;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    touch-action: pan-y;
+}
+
+.partnership-slider-container.grabbing {
+    cursor: grabbing;
 }
 
 /* Gradient masks for better visual effect */
@@ -765,7 +773,7 @@ body.modal-open {
     top: 0;
     bottom: 0;
     width: 100px;
-    z-index: 2;
+    z-index: 3;
     pointer-events: none;
 }
 
@@ -782,32 +790,19 @@ body.modal-open {
 .partnership-track {
     display: flex;
     height: 100%;
-    animation: slidePartnerships 30s linear infinite;
     align-items: center;
     padding: 20px 0;
     gap: 20px;
+    will-change: transform;
+    transform: translateX(0);
 }
 
-.partnership-slider-container:hover .partnership-track {
-    animation-play-state: paused;
-}
-
-@keyframes slidePartnerships {
-    0% {
-        transform: translateX(0);
-    }
-
-    100% {
-        transform: translateX(-50%);
-    }
-}
-
-/* Partnership Item - Improved Responsiveness */
+/* Partnership Item - Enhanced with Logo Zoom Effect */
 .partnership-item {
     border-radius: 16px;
     background-color: rgba(224, 223, 223, 0.77);
     box-shadow: 0 5px 20px var(--shadow-color);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -815,17 +810,41 @@ body.modal-open {
     padding: 20px;
     border: 1px solid rgba(194, 72, 34, 0.1);
     flex-shrink: 0;
-
-    /* Base size for desktop */
     width: 180px;
     height: 140px;
+    pointer-events: auto;
+    /* Enable interaction for logo zoom */
+    position: relative;
+    overflow: visible;
+    /* Changed from hidden to visible for glow effect */
+    cursor: pointer;
 }
 
 .partnership-item:hover {
-    transform: translateY(-8px) scale(1.05);
-    box-shadow: 0 15px 30px var(--shadow-color);
+    transform: translateY(-12px) scale(1.08);
+    box-shadow: 0 20px 40px var(--shadow-color);
     border-color: var(--red-orange);
-    background-color: rgba(255, 255, 255, 0.9);
+    background-color: rgba(255, 255, 255, 0.95);
+    z-index: 5;
+    /* Bring hovered item to front */
+}
+
+.partnership-item:active {
+    transform: translateY(-8px) scale(1.05);
+    transition: transform 0.1s ease;
+}
+
+/* Logo container for better zoom control */
+.logo-container {
+    width: 100%;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: visible;
+    /* Changed from hidden to visible */
 }
 
 .partnership-logo {
@@ -834,15 +853,53 @@ body.modal-open {
     width: auto;
     height: auto;
     object-fit: contain;
-    margin-bottom: 12px;
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     filter: grayscale(30%);
+    transform-origin: center center;
+    outline: none !important;
+    box-shadow: none !important;
+    border: none !important;
+}
+
+/* Enhanced Logo Zoom Effect on Hover */
+.partnership-item:hover .logo-container {
+    transform: scale(1.2);
+    margin-bottom: 5px;
 }
 
 .partnership-item:hover .partnership-logo {
-    filter: grayscale(0%);
+    filter: grayscale(0%) brightness(1.1) drop-shadow(0 5px 15px rgba(0, 0, 0, 0.2));
     opacity: 1;
-    transform: scale(1.1);
+    transform: scale(1.3);
+    /* Increased zoom effect */
+    outline: none !important;
+    border: none !important;
+}
+
+/* Active (click) state - even more zoom */
+.partnership-item.active .partnership-logo,
+.partnership-item:active .partnership-logo {
+    filter: grayscale(0%) brightness(1.2) drop-shadow(0 8px 20px rgba(0, 0, 0, 0.25));
+    transform: scale(1.4);
+    /* Slightly larger on click */
+    transition: transform 0.2s ease, filter 0.2s ease;
+    outline: none !important;
+    border: none !important;
+}
+
+/* Logo glow effect on hover */
+.partnership-item:hover .partnership-logo::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 140%;
+    height: 140%;
+    background: radial-gradient(circle, rgba(194, 72, 34, 0.15) 0%, transparent 70%);
+    border-radius: 50%;
+    z-index: -1;
+    opacity: 0.5;
 }
 
 .logo-caption {
@@ -851,11 +908,26 @@ body.modal-open {
     margin: 0;
     text-align: center;
     color: var(--dark-blue);
-    transition: color 0.3s ease;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 2;
+    margin-top: 12px;
+    padding: 4px 8px;
+    border-radius: 4px;
+
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
 }
 
+/* Enhanced caption on hover - WITHOUT BORDER */
 .partnership-item:hover .logo-caption {
     color: var(--red-orange);
+    transform: translateY(3px);
+    font-weight: 700;
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
 }
 
 /* Light theme adjustments */
@@ -867,11 +939,87 @@ body.modal-open {
 
 .light-theme .partnership-item:hover {
     background-color: white;
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
 }
 
 .light-theme .logo-caption {
     color: #444b55;
+    background: rgba(255, 255, 255, 0.9);
+    border: none !important;
+}
+
+.light-theme .partnership-item:hover .logo-caption {
+    background: white;
+    border: none !important;
+}
+
+/* Logo zoom effect for light theme - NO BORDER */
+.light-theme .partnership-item:hover .partnership-logo {
+    filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.15)) grayscale(0%) brightness(1.1);
+    border: none !important;
+    outline: none !important;
+}
+
+/* Scroll indicator for manual scroll */
+.scroll-indicator {
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+    font-size: 0.8rem;
+    color: var(--text-primary);
+    z-index: 2;
+    pointer-events: none;
+}
+
+.partnership-slider-container:hover .scroll-indicator {
+    opacity: 1;
+}
+
+.scroll-dots {
+    display: flex;
+    gap: 4px;
+}
+
+.scroll-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: var(--text-primary);
+    opacity: 0.5;
+    animation: pulseDot 2s infinite;
+}
+
+.scroll-dot:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.scroll-dot:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+@keyframes pulseDot {
+
+    0%,
+    100% {
+        opacity: 0.5;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.2);
+    }
+}
+
+/* Momentum scrolling class */
+.partnership-track.momentum {
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 /* =============================================
@@ -886,6 +1034,10 @@ body.modal-open {
         padding: 25px;
     }
 
+    .logo-container {
+        height: 70px;
+    }
+
     .partnership-logo {
         max-height: 70px;
         max-width: 140px;
@@ -893,6 +1045,15 @@ body.modal-open {
 
     .logo-caption {
         font-size: 1rem;
+        margin-top: 15px;
+    }
+
+    .partnership-item:hover .logo-container {
+        transform: scale(1.25);
+    }
+
+    .partnership-item:hover .partnership-logo {
+        transform: scale(1.35);
     }
 }
 
@@ -902,6 +1063,10 @@ body.modal-open {
         width: 170px;
         height: 130px;
         padding: 18px;
+    }
+
+    .logo-container {
+        height: 55px;
     }
 
     .partnership-logo {
@@ -935,6 +1100,10 @@ body.modal-open {
         padding: 15px;
     }
 
+    .logo-container {
+        height: 50px;
+    }
+
     .partnership-logo {
         max-height: 50px;
         max-width: 100px;
@@ -948,6 +1117,19 @@ body.modal-open {
     .partnership-slider-container::before,
     .partnership-slider-container::after {
         width: 60px;
+    }
+
+    .scroll-indicator {
+        bottom: -25px;
+    }
+
+    /* Reduce zoom on tablet */
+    .partnership-item:hover .logo-container {
+        transform: scale(1.15);
+    }
+
+    .partnership-item:hover .partnership-logo {
+        transform: scale(1.25);
     }
 }
 
@@ -971,7 +1153,10 @@ body.modal-open {
         width: 140px;
         height: 110px;
         padding: 12px;
-        margin: 0 10px;
+    }
+
+    .logo-container {
+        height: 45px;
     }
 
     .partnership-logo {
@@ -981,6 +1166,7 @@ body.modal-open {
 
     .logo-caption {
         font-size: 0.8rem;
+        margin-top: 10px;
     }
 
     .partnership-track {
@@ -992,6 +1178,25 @@ body.modal-open {
     .partnership-slider-container::before,
     .partnership-slider-container::after {
         width: 40px;
+    }
+
+    .scroll-indicator {
+        bottom: -22px;
+        font-size: 0.75rem;
+    }
+
+    .scroll-dot {
+        width: 5px;
+        height: 5px;
+    }
+
+    /* Reduce zoom on mobile */
+    .partnership-item:hover .logo-container {
+        transform: scale(1.1);
+    }
+
+    .partnership-item:hover .partnership-logo {
+        transform: scale(1.2);
     }
 }
 
@@ -1017,8 +1222,11 @@ body.modal-open {
         width: 130px;
         height: 100px;
         padding: 10px;
-        margin: 0 8px;
         border-radius: 12px;
+    }
+
+    .logo-container {
+        height: 40px;
     }
 
     .partnership-logo {
@@ -1029,6 +1237,8 @@ body.modal-open {
     .logo-caption {
         font-size: 0.75rem;
         font-weight: 500;
+        margin-top: 8px;
+        padding: 3px 6px;
     }
 
     .partnership-track {
@@ -1042,15 +1252,32 @@ body.modal-open {
         width: 30px;
     }
 
-    /* Reduce animation speed on very small screens */
-    @keyframes slidePartnerships {
-        0% {
-            transform: translateX(0);
-        }
+    .scroll-indicator {
+        bottom: -20px;
+        font-size: 0.7rem;
+        gap: 5px;
+    }
 
-        100% {
-            transform: translateX(-40%);
-        }
+    .scroll-text {
+        display: none;
+    }
+
+    .scroll-dot {
+        width: 4px;
+        height: 4px;
+    }
+
+    /* Reduce zoom on small screens */
+    .partnership-item:hover {
+        transform: translateY(-8px) scale(1.05);
+    }
+
+    .partnership-item:hover .logo-container {
+        transform: scale(1.08);
+    }
+
+    .partnership-item:hover .partnership-logo {
+        transform: scale(1.15);
     }
 }
 
@@ -1060,7 +1287,10 @@ body.modal-open {
         width: 120px;
         height: 95px;
         padding: 8px;
-        margin: 0 5px;
+    }
+
+    .logo-container {
+        height: 35px;
     }
 
     .partnership-logo {
@@ -1070,21 +1300,47 @@ body.modal-open {
 
     .logo-caption {
         font-size: 0.7rem;
+        margin-top: 6px;
+        padding: 2px 4px;
     }
 
     .partnership-track {
         gap: 10px;
+    }
+
+    .scroll-indicator {
+        bottom: -18px;
     }
 }
 
 /* Touch device optimizations */
 @media (hover: none) and (pointer: coarse) {
     .partnership-item:hover {
-        transform: none;
+        transform: translateY(-5px) scale(1.03);
     }
 
     .partnership-item:active {
-        transform: translateY(-5px) scale(1.03);
+        transform: translateY(-5px) scale(1.05);
+    }
+
+    /* Improve touch target size */
+    .partnership-slider-container {
+        min-height: 150px;
+    }
+
+    .scroll-indicator {
+        opacity: 0.5;
+    }
+
+    /* Touch-optimized zoom */
+    .partnership-item:active .logo-container {
+        transform: scale(1.15);
+        transition: transform 0.1s ease;
+    }
+
+    .partnership-item:active .partnership-logo {
+        transform: scale(1.25);
+        transition: transform 0.1s ease;
     }
 }
 
@@ -1097,21 +1353,27 @@ body.modal-open {
 
     .partnership-logo {
         filter: contrast(120%);
+        border: none !important;
+    }
+
+    .scroll-dot {
+        background-color: var(--red-orange);
     }
 }
 
 /* Reduced motion preference */
 @media (prefers-reduced-motion: reduce) {
     .partnership-track {
-        animation: none;
         justify-content: center;
         flex-wrap: wrap;
         gap: 15px;
+        animation: none !important;
     }
 
     .partnership-slider-container {
         overflow: visible;
         height: auto;
+        cursor: default;
     }
 
     .partnership-slider-container::before,
@@ -1121,7 +1383,164 @@ body.modal-open {
 
     .partnership-item {
         margin: 5px;
+        pointer-events: auto;
+        transition: none;
+        border: 1px solid rgba(194, 72, 34, 0.1) !important;
     }
+
+    .partnership-item:hover,
+    .partnership-item:active {
+        transform: none !important;
+        border: 1px solid rgba(194, 72, 34, 0.1) !important;
+    }
+
+    .partnership-logo,
+    .logo-container {
+        transition: none !important;
+        transform: none !important;
+    }
+
+    .logo-caption {
+        transition: none !important;
+    }
+
+    .scroll-indicator {
+        display: none;
+    }
+
+    .partnership-slider-container {
+        user-select: auto;
+        -webkit-user-select: auto;
+        -moz-user-select: auto;
+        -ms-user-select: auto;
+    }
+}
+
+/* Dark mode adjustments for scroll indicator */
+.dark-theme .scroll-indicator {
+    color: var(--light-gray);
+}
+
+.dark-theme .scroll-dot {
+    background-color: var(--light-gray);
+}
+
+/* Light mode adjustments for scroll indicator */
+.light-theme .scroll-indicator {
+    color: #444b55;
+}
+
+.light-theme .scroll-dot {
+    background-color: #444b55;
+}
+
+/* Fix for light theme gradient masks */
+.light-theme .partnership-slider-container::before {
+    background: linear-gradient(to right, var(--bg-secondary) 0%, transparent 100%);
+}
+
+.light-theme .partnership-slider-container::after {
+    background: linear-gradient(to left, var(--bg-secondary) 0%, transparent 100%);
+}
+
+/* Disable hover effects during drag */
+.partnership-slider-container.grabbing .partnership-item {
+    cursor: grabbing;
+}
+
+.partnership-slider-container.grabbing .partnership-item:hover {
+    transform: none !important;
+    box-shadow: 0 5px 20px var(--shadow-color) !important;
+    z-index: auto !important;
+    border: 1px solid rgba(194, 72, 34, 0.1) !important;
+}
+
+.partnership-slider-container.grabbing .partnership-item:hover .logo-container,
+.partnership-slider-container.grabbing .partnership-item:hover .partnership-logo {
+    transform: none !important;
+    filter: grayscale(30%) !important;
+}
+
+/* Smooth transitions for track movement */
+.partnership-track {
+    transition: transform 0.1s ease-out;
+}
+
+/* Enhanced active state with click animation */
+.partnership-item.clicked .partnership-logo {
+    animation: logoClickPulse 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes logoClickPulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.5);
+    }
+
+    100% {
+        transform: scale(1.4);
+    }
+}
+
+/* Global reset for any potential borders */
+.partnership-item * {
+    border: none !important;
+    outline: none !important;
+}
+
+.partnership-item:hover * {
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+/* Specifically target the logo to ensure no borders */
+.partnership-logo,
+.partnership-logo:hover,
+.partnership-logo:active,
+.partnership-logo:focus {
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+/* Specifically target the caption to ensure no borders */
+.logo-caption,
+.logo-caption:hover,
+.logo-caption:active,
+.logo-caption:focus {
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+/* Force remove any focus rings */
+.partnership-item:focus,
+.partnership-item:focus-within {
+    outline: none !important;
+}
+
+.partnership-item:focus .partnership-logo,
+.partnership-item:focus .logo-caption {
+    outline: none !important;
+    border: none !important;
+}
+
+/* Ensure no text selection on partnership items */
+.partnership-item {
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Remove any default browser styles on images */
+.partnership-logo {
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+    /* user-drag: none; */
 }
 
 /* =============================================
@@ -1989,7 +2408,9 @@ footer {
     .case-card {
         flex-direction: column;
         padding: 1.5rem;
+
     }
+
 
     .case-details {
         padding-right: 0;
@@ -2518,18 +2939,24 @@ footer {
 
 .form-check-input.is-valid,
 .was-validated .form-check-input:valid {
-    border-color: #198754;
+    border-color: #dc3545;
 }
 
 .form-check-input.is-valid:checked,
 .was-validated .form-check-input:valid:checked {
-    background-color: #198754;
-    border-color: #198754;
+    background-color: #dc3545;
+    border-color: #dc3545;
 }
 
 .form-check-input.is-invalid,
 .was-validated .form-check-input:invalid {
     border-color: #dc3545;
+}
+
+
+.form-check-input:focus {
+    box-shadow: 0 0 0 0.25rem rgba(233, 30, 99, 0.25) !important;
+    border-color: #dc3545 !important;
 }
 
 .form-check-input.is-invalid:checked,
