@@ -574,13 +574,14 @@ document.addEventListener('DOMContentLoaded', function () {
             animateMomentum();
         }
 
-        // Mouse wheel scrolling
+        // Wheel events - FIXED VERSION (natural scrolling direction)
         function handleWheel(e) {
             e.preventDefault();
 
             // Calculate scroll amount (more sensitive for wheel)
             const wheelDelta = e.deltaY || e.deltaX || 0;
-            const scrollAmount = wheelDelta * 0.8; // Adjust sensitivity
+            // FIXED: Invert the direction for natural scrolling
+            const scrollAmount = -wheelDelta * 0.8; // Added minus sign
 
             // Apply scroll
             partnershipTrack.classList.add('momentum');
@@ -662,12 +663,18 @@ document.addEventListener('DOMContentLoaded', function () {
         resetHideIndicator();
 
         // ============================
-        // Enhanced Logo Click/Hover Effects
+        // Enhanced Logo Click/Hover Effects - FIXED FOR DOUBLE CLICK
         // ============================
 
         // Track if we're currently in a drag operation to prevent accidental clicks
         let dragStartTime = 0;
         const DRAG_THRESHOLD = 100; // ms - time before considering it a drag vs click
+
+        // Double click detection variables
+        const DOUBLE_CLICK_DELAY = 300; // ms between clicks to count as double click
+        let lastClickTime = 0;
+        let lastClickedItem = null;
+        let clickTimeout = null;
 
         partnershipItems.forEach(item => {
             // Track touch/mouse down time
@@ -681,7 +688,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 downTime = Date.now();
             });
 
-            // Add click effect
+            // FIXED: Replace single click with double click detection
             item.addEventListener('click', function (e) {
                 // Prevent click during drag or if it was a quick drag
                 const clickDuration = Date.now() - downTime;
@@ -691,25 +698,55 @@ document.addEventListener('DOMContentLoaded', function () {
                     return;
                 }
 
-                // Toggle active class
-                this.classList.toggle('active');
+                const currentTime = Date.now();
 
-                // Add clicked animation class
-                this.classList.add('clicked');
+                // Clear any existing single click timeout
+                if (clickTimeout) {
+                    clearTimeout(clickTimeout);
+                    clickTimeout = null;
+                }
 
-                // Show notification with logo name
-                const logoName = this.querySelector('.logo-caption').textContent;
-                showNotification(`We are currently partnering with ${logoName} `, 'info');
+                // Check if this is a double click (within the time limit and same item)
+                if (currentTime - lastClickTime <= DOUBLE_CLICK_DELAY && lastClickedItem === this) {
+                    // This is a double click - execute the desired action
+                    e.preventDefault();
+                    e.stopPropagation();
 
-                // Remove clicked class after animation
-                setTimeout(() => {
-                    this.classList.remove('clicked');
-                }, 500);
+                    // Toggle active class
+                    this.classList.toggle('active');
 
-                // Remove active class after 2 seconds
-                setTimeout(() => {
-                    this.classList.remove('active');
-                }, 2000);
+                    // Add clicked animation class
+                    this.classList.add('clicked');
+
+                    // Show notification with logo name
+                    const logoName = this.querySelector('.logo-caption').textContent;
+                    showNotification(`We are currently partnering with ${logoName} `, 'info');
+
+                    // Remove clicked class after animation
+                    setTimeout(() => {
+                        this.classList.remove('clicked');
+                    }, 500);
+
+                    // Remove active class after 2 seconds
+                    setTimeout(() => {
+                        this.classList.remove('active');
+                    }, 2000);
+
+                    // Reset click tracking
+                    lastClickTime = 0;
+                    lastClickedItem = null;
+                } else {
+                    // This is a single click - store for potential double click
+                    lastClickTime = currentTime;
+                    lastClickedItem = this;
+
+                    // Set a timeout to clear the single click if no double click occurs
+                    clickTimeout = setTimeout(() => {
+                        lastClickTime = 0;
+                        lastClickedItem = null;
+                        clickTimeout = null;
+                    }, DOUBLE_CLICK_DELAY);
+                }
             });
 
             // Enhanced hover effect with delay for better UX
@@ -753,7 +790,6 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         }, true);
     }
-
     // ============================
     // Cases Section - Stacked Cards
     // ============================
